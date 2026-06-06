@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://bg4mw03aupvty"]
+
+[ext_resource type="Texture2D" uid="uid://dcuem7bxr6sxi" path="res://example_card_img.jpg" id="1_dd2wi"]
+[ext_resource type="Script" uid="uid://bd4f56op1k2ig" path="res://card.gd" id="1_hael8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd2wi"]
+content_margin_bottom = 5.0
+bg_color = Color(0.2051174, 0.20511746, 0.20511732, 1)
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4fkt"]
+bg_color = Color(0.41981313, 0.41981313, 0.41981304, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_dd2wi"]
+font_size = 8
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dd2wi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hael8"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.9647059, 0.9843137, 0.9764706, 0.42745098)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21rx5"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.9647059, 0.9843137, 0.9764706, 0.42745098)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="Card" type="PanelContainer" unique_id=1958935780]
+offset_right = 110.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dd2wi")
+script = ExtResource("1_hael8")
+
+[node name="Title" type="Label" parent="." unique_id=1416745700]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_u4fkt")
+text = "EXAMPLE CARD"
+label_settings = SubResource("LabelSettings_dd2wi")
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="Title" unique_id=881416154]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 19.0
+offset_right = 95.0
+offset_bottom = 71.56317
+texture = ExtResource("1_dd2wi")
+expand_mode = 5
+
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1161163096]
+custom_minimum_size = Vector2(108, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+theme_override_constants/minimum_grab_thickness = 0
+theme_override_icons/grabber = SubResource("PlaceholderTexture2D_dd2wi")
+
+[node name="SuccessBox" type="RichTextLabel" parent="VSplitContainer" unique_id=970265120]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -3
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/normal_font_size = 4
+theme_override_font_sizes/bold_font_size = 4
+theme_override_font_sizes/bold_italics_font_size = 4
+theme_override_font_sizes/italics_font_size = 4
+theme_override_font_sizes/mono_font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_hael8")
+text = "PERFECT:
+
+PREPARED:
+
+RISKY:
+
+Reward: 
+	 "
+scroll_active = false
+
+[node name="FailureBox" type="RichTextLabel" parent="VSplitContainer" unique_id=275226518]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_font_sizes/normal_font_size = 4
+theme_override_font_sizes/bold_font_size = 4
+theme_override_font_sizes/bold_italics_font_size = 4
+theme_override_font_sizes/italics_font_size = 4
+theme_override_font_sizes/mono_font_size = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_21rx5")
+text = "<not feasible if:>
+<difficulty increased by: >
+<fail on: >
+Penalty:"
+scroll_active = false

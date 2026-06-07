@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bb5n52c5sx3eb"]
+
+[ext_resource type="Script" uid="uid://2xd5lxp04k32" path="res://card2D.gd" id="1_elx0p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0qdg"]
+size = Vector2(110, 150)
+
+[node name="Node2D" type="Area2D" unique_id=1162125077]
+script = ExtResource("1_elx0p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869969107]
+position = Vector2(55, 75)
+shape = SubResource("RectangleShape2D_l0qdg")

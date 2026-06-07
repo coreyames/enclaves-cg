@@ -8,7 +8,6 @@ var failure: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !load_card(): return
 	$Title/Image.texture.resource_path = img_path
 	$Title.text = title
 	$VSplitContainer/SuccessBox.text = success

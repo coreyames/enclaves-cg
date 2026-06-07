@@ -1,15 +1,45 @@
-[
+{
+	"types": {
+		"Plan": [
+			"SEARCH",
+			"RETRIEVAL",
+			"COLLECTION",
+			"CONSTRUCTION",
+			"CIVIC",
+			"SUBVERSION",
+			"DIPLOMATIC"
+		],
+		"Specialist": [
+			"MEDICAL",
+			"CULINARY",
+			"AGRICULTURAL",
+			"ENGINEERING",
+			"RECON",
+			"COMBAT",
+			"ANCILLARY"
+		],
+		"Utility": [
+			"SUBSTINENCE",
+			"HEALTH",
+			"AMENITY",
+			"DEFENSE",
+			"DOMESTIC",
+			"ACADEMIC",
+			"PRODUCTION"
+		]
+	},
+	"cards": [
 	{
 		"title": "AN EXAMPLE",
-		"img_path": "res://example_card_img.jpg",
+		"img_path": "res://card-imgs/example_card_img.jpg",
 		"success": "this has a new\nline in it",
 		"failure": "this one also has a new\nline in it"				
 	},
 	{
 		"title": "ANother EXAMPLE",
-		"img_path": "res://boardbg-pexels-davidmcelwee.jpg",
+		"img_path": "res://card-imgs/boardbg-pexels-davidmcelwee.jpg",
 		"success": "this has a new\nline in it",
 		"failure": "this one also has a new\nline in it"				
-	},	
-]
+	}]
+}
 	

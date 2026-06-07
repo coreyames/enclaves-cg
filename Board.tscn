@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://filg5446ko2t"]
 
 [ext_resource type="Script" uid="uid://ddny52oqvbtwg" path="res://board.gd" id="1_3ng4l"]
-[ext_resource type="Texture2D" uid="uid://cr8ng4qarjaxu" path="res://boardbg-pexels-davidmcelwee.jpg" id="1_nd4as"]
+[ext_resource type="Texture2D" uid="uid://cr8ng4qarjaxu" path="res://card-imgs/boardbg-pexels-davidmcelwee.jpg" id="1_nd4as"]
 
 [node name="Board" type="Control" unique_id=82553554]
 layout_mode = 3
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_3ng4l")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=212307771]
@@ -18,4 +19,5 @@ layout_mode = 0
 offset_right = 7572.0
 offset_bottom = 5152.0
 scale = Vector2(0.25331205, 0.2092717)
+mouse_filter = 2
 texture = ExtResource("1_nd4as")

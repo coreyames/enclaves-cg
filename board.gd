@@ -11,6 +11,8 @@ func _ready() -> void:
 	var new_card_2d: Node2D = card_2d_scene.instantiate()
 	new_card_2d.add_card(cardset[0])
 	add_child(new_card_2d)
+	$Deck/Card.flip()
+	$Discard/Card.flip()
 	return
 
 func load_cards(path: String) -> Array[Card]:
@@ -19,12 +21,18 @@ func load_cards(path: String) -> Array[Card]:
 	if !FileAccess.get_open_error() == Error.OK:
 		return []
 	var parsed_dict: Dictionary = JSON.parse_string(file_text)
-	var parsed: Array = parsed_dict["cards"]
-	for card in parsed:
-		var new_card: Card = card_scene.instantiate()
-		new_card.card_json = card
-		new_card.load_card()
-		_cardset.append(new_card)
+	var parsed: Dictionary  = parsed_dict["cards"]
+	for type in parsed:
+		#if type != "Plan": continue
+		var cards: Array = parsed[type]
+		for card in cards:
+			var new_card: Card = card_scene.instantiate()
+			new_card.card_json = card
+			new_card.load_card(type)
+			_cardset.append(new_card)
 	return _cardset
-
 	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu"):
+		get_tree().quit()
+	return

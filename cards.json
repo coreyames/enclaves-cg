@@ -1,45 +1,386 @@
 {
 	"types": {
-		"Plan": [
-			"SEARCH",
-			"RETRIEVAL",
-			"COLLECTION",
-			"CONSTRUCTION",
-			"CIVIC",
-			"SUBVERSION",
-			"DIPLOMATIC"
+		"Plan": {
+			"SEARCH":       [
+				"RETRIEVAL"
+			],
+			"COLLECTION":   [],
+			"CONSTRUCTION": [],
+			"CIVIC":        [
+				"DIPLOMATIC"
+			],
+			"SUBVERSION":   []
+		},
+		"Specialist":{
+			"MEDICAL":      [],
+			"AGRICULTURAL": [
+				"CULINARY"
+			],
+			"ENGINEERING":  [],
+			"RECON":        [
+				"COMBAT"
+			],
+			"ANCILLARY":    []
+		},
+		"Utility": {
+			"SUBSTINENCE":  [],
+			"HEALTH":       [],
+			"DEFENSIVE":    [],
+			"DOMESTIC":     [
+				"AMENITY",
+				"ACADEMIC"
+			],
+			"PRODUCTION":   []
+		},
+		"Contingency": {}
+	},
+	"cards": {
+		"Plan":[
+			{
+				"title": "New Plan 1",
+				"types": ["Search", "Retrieval","Subversion"],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 2",
+				"types": ["Search", "Retrieval", "Subversion"],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 3",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 4",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 5",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 6",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 7",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 8",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 9",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 10",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 11",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 12",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 13",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 14",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 15",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 16",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 17",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 18",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 19",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Plan 20",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			}
 		],
 		"Specialist": [
-			"MEDICAL",
-			"CULINARY",
-			"AGRICULTURAL",
-			"ENGINEERING",
-			"RECON",
-			"COMBAT",
-			"ANCILLARY"
+			{
+				"title": "New Specialist 1",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 2",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 3",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 4",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 5",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 6",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Specialist 7",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			}
 		],
-		"Utility": [
-			"SUBSTINENCE",
-			"HEALTH",
-			"AMENITY",
-			"DEFENSE",
-			"DOMESTIC",
-			"ACADEMIC",
-			"PRODUCTION"
+		"Utility":    [
+			{
+				"title": "New Utility 1",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 2",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 3",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 4",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 5",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 6",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			},
+			{
+				"title": "New Utility 7",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path":"res://card-imgs/example_card_img.jpg",
+				"effect": "whatever may need to go here"
+			}
+		],
+		"Contingency":[
+			{
+				"title": "New Contingency 1",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 2",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 3",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 4",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 5",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 6",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 7",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 8",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 9",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			},
+			{
+				"title": "New Contingency 10",
+				"types": [],
+				"cost": "1:1:1",
+				"img_path": "res://card-imgs/example_card_img.jpg",
+				"success": "success text",
+				"failure": "failure text"				
+			}
 		]
-	},
-	"cards": [
-	{
-		"title": "AN EXAMPLE",
-		"img_path": "res://card-imgs/example_card_img.jpg",
-		"success": "this has a new\nline in it",
-		"failure": "this one also has a new\nline in it"				
-	},
-	{
-		"title": "ANother EXAMPLE",
-		"img_path": "res://card-imgs/boardbg-pexels-davidmcelwee.jpg",
-		"success": "this has a new\nline in it",
-		"failure": "this one also has a new\nline in it"				
-	}]
+	}
 }
 	

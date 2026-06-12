@@ -1,17 +1,16 @@
-class_name Card extends PanelContainer
+class_name PlanCard extends Card
 
-var card_json: Dictionary
-var title: String
-var img_path: String
-var cost: String
-var costs: Vector3i
-var types: Array
-
-var face_down: bool
+var success: String
+var failure: String
 
 func _ready() -> void:
 	$Title/Image.texture.resource_path = img_path
 	$Title.text = title
+	
+	if $VSplitContainer/SuccessBox && success:
+		$VSplitContainer/SuccessBox.text = success
+	if	$VSplitContainer/FailureBox && failure:
+		$VSplitContainer/FailureBox.text = failure
 		
 	if cost: 
 		costs = parse_cost(cost)
@@ -38,8 +37,12 @@ func load_card() -> bool:
 		cost = card_json["cost"]
 	if card_json.has("types"):
 		types = card_json["types"]
+	if card_json.has("success"):
+		success = card_json["success"]
+	if card_json.has("failure"):
+		failure = card_json["failure"]
 	
-	if !(title && img_path && cost && types):
+	if !(title && img_path && cost && types && success && failure):
 		return false
 	return true
 
@@ -51,7 +54,7 @@ func handle_types(types_array: Array) -> bool:
 	var num_types: int = types_array.size()
 	if num_types < 1: return false
 	elif num_types > 3: return false
-	$Title/MainType.text = "[i]Card[/i]\n[i]%s[/i]" % [types_array[0]]
+	$Title/MainType.text = "[i]Plan[/i]\n[i]%s[/i]" % [types_array[0]]
 	var sub1: String = ""
 	var sub2: String = ""
 	if types_array.size() >= 2:

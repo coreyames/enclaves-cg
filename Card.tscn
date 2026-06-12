@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bg4mw03aupvty"]
+[gd_scene format=3 uid="uid://c6ddfs1v37jkx"]
 
 [ext_resource type="Texture2D" uid="uid://dcuem7bxr6sxi" path="res://card-imgs/example_card_img.jpg" id="1_dd2wi"]
 [ext_resource type="Script" uid="uid://bd4f56op1k2ig" path="res://card.gd" id="1_hael8"]
@@ -47,31 +47,6 @@ colors = PackedColorArray(0, 0.61960787, 1, 1, 0, 0.81960785, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wi8ie"]
 gradient = SubResource("Gradient_3ujke")
 width = 10
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dd2wi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hael8"]
-content_margin_left = 2.0
-content_margin_right = 2.0
-bg_color = Color(0.9647059, 0.9843137, 0.9764706, 0.42745098)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21rx5"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-bg_color = Color(0.9647059, 0.9843137, 0.9764706, 0.42745098)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [node name="Card" type="PanelContainer" unique_id=1958935780]
 offset_right = 110.0
@@ -146,9 +121,8 @@ texture = SubResource("GradientTexture1D_wi8ie")
 
 [node name="Value" type="Label" parent="Title/GeneralCost" unique_id=1539398143]
 layout_mode = 0
-offset_left = 1.0
 offset_top = 1.0
-offset_right = 11.0
+offset_right = 10.0
 offset_bottom = 9.0
 theme_override_font_sizes/font_size = 5
 text = "3"
@@ -165,8 +139,8 @@ theme_override_constants/line_separation = -1
 theme_override_font_sizes/normal_font_size = 4
 theme_override_font_sizes/italics_font_size = 4
 bbcode_enabled = true
-text = "[i]Plan
-PlanType[/i]"
+text = "[i]CardType
+MainType[/i]"
 
 [node name="Subtypes" type="RichTextLabel" parent="Title" unique_id=1150146794]
 layout_mode = 0
@@ -182,57 +156,3 @@ text = "[i]Subtype[/i]
 [i]Subtype2[/i]
 "
 horizontal_alignment = 2
-
-[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1161163096]
-custom_minimum_size = Vector2(108, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 0
-theme_override_constants/minimum_grab_thickness = 0
-theme_override_icons/grabber = SubResource("PlaceholderTexture2D_dd2wi")
-
-[node name="SuccessBox" type="RichTextLabel" parent="VSplitContainer" unique_id=970265120]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = -3
-theme_override_constants/shadow_outline_size = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_font_sizes/normal_font_size = 4
-theme_override_font_sizes/bold_font_size = 4
-theme_override_font_sizes/bold_italics_font_size = 4
-theme_override_font_sizes/italics_font_size = 4
-theme_override_font_sizes/mono_font_size = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_hael8")
-text = "PERFECT:
-
-PREPARED:
-
-RISKY:
-
-Reward: 
-	 "
-scroll_active = false
-
-[node name="FailureBox" type="RichTextLabel" parent="VSplitContainer" unique_id=275226518]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_font_sizes/normal_font_size = 4
-theme_override_font_sizes/bold_font_size = 4
-theme_override_font_sizes/bold_italics_font_size = 4
-theme_override_font_sizes/italics_font_size = 4
-theme_override_font_sizes/mono_font_size = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_21rx5")
-text = "<not feasible if:>
-<difficulty increased by: >
-<fail on: >
-Penalty:"
-scroll_active = false

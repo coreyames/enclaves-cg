@@ -14,6 +14,11 @@ config/name="enclave-cg"
 run/main_scene="uid://filg5446ko2t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [display]
 
 window/size/viewport_width=1920

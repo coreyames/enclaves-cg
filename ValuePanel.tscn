@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://58petpm8plg8"]
+
+[ext_resource type="Script" uid="uid://6rq1uggeqtxn" path="res://value_panel.gd" id="1_oth1i"]
+
+[node name="ValuePanel" type="Panel" unique_id=572943250]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1880.0
+offset_bottom = -1040.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_oth1i")
+
+[node name="Value" type="Label" parent="." unique_id=1510120260]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 40.0
+offset_bottom = 33.0
+mouse_filter = 1
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Increase" type="Area2D" parent="." unique_id=1081395970]
+position = Vector2(13, 3.8146973e-06)
+scale = Vector2(7, 7)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Increase" unique_id=1904703270]
+position = Vector2(-5.9604645e-08, 0.0116065955)
+scale = Vector2(0.99999994, 0.9910714)
+polygon = PackedVector2Array(0, 1, 1, 0, 2, 1)
+
+[node name="Decrease" type="Area2D" parent="." unique_id=536035142]
+position = Vector2(14, 32.999996)
+scale = Vector2(7, 7)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Decrease" unique_id=1909159751]
+position = Vector2(-0.14285713, 5.449567e-07)
+polygon = PackedVector2Array(0, 0, 1, 1, 2, 0)

@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cxw7wnbx528ms"]
+[gd_scene format=3 uid="uid://bg4mw03aupvty"]
 
-[ext_resource type="Script" uid="uid://bd4f56op1k2ig" path="res://card.gd" id="1_agi7e"]
+[ext_resource type="Script" uid="uid://cpri2t17ijwtj" path="res://plan_card.gd" id="1_agi7e"]
 [ext_resource type="Texture2D" uid="uid://dcuem7bxr6sxi" path="res://card-imgs/example_card_img.jpg" id="2_cnx0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd2wi"]
@@ -14,6 +14,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4fkt"]
+content_margin_bottom = 3.0
 bg_color = Color(0.41981313, 0.41981313, 0.41981304, 1)
 border_width_left = 2
 border_width_top = 2
@@ -24,7 +25,28 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_dd2wi"]
-font_size = 8
+font_size = 7
+
+[sub_resource type="Gradient" id="Gradient_21rx5"]
+colors = PackedColorArray(0, 0.61960787, 0.078431375, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ujke"]
+gradient = SubResource("Gradient_21rx5")
+width = 10
+
+[sub_resource type="Gradient" id="Gradient_hael8"]
+colors = PackedColorArray(0, 0.61960787, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_21rx5"]
+gradient = SubResource("Gradient_hael8")
+width = 10
+
+[sub_resource type="Gradient" id="Gradient_3ujke"]
+colors = PackedColorArray(0, 0.61960787, 1, 1, 0, 0.81960785, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wi8ie"]
+gradient = SubResource("Gradient_3ujke")
+width = 10
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dd2wi"]
 
@@ -63,7 +85,7 @@ layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_u4fkt")
-text = "EXAMPLE CARD"
+text = "Example Card"
 label_settings = SubResource("LabelSettings_dd2wi")
 horizontal_alignment = 1
 
@@ -75,6 +97,91 @@ offset_right = 95.0
 offset_bottom = 71.56317
 texture = ExtResource("2_cnx0u")
 expand_mode = 5
+
+[node name="FoodCost" type="TextureRect" parent="Title" unique_id=556038405]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 29.0
+offset_right = 14.0
+offset_bottom = 39.0
+texture = SubResource("GradientTexture1D_3ujke")
+
+[node name="Value" type="Label" parent="Title/FoodCost" unique_id=2061855838]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 5
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaterCost" type="TextureRect" parent="Title" unique_id=1139549176]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 48.0
+offset_right = 14.0
+offset_bottom = 58.0
+texture = SubResource("GradientTexture1D_21rx5")
+
+[node name="Value" type="Label" parent="Title/WaterCost" unique_id=1791884629]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 5
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GeneralCost" type="TextureRect" parent="Title" unique_id=1945434604]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 39.0
+offset_right = 108.0
+offset_bottom = 49.0
+texture = SubResource("GradientTexture1D_wi8ie")
+
+[node name="Value" type="Label" parent="Title/GeneralCost" unique_id=1539398143]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 11.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 5
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainType" type="RichTextLabel" parent="Title" unique_id=229232600]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 25.0
+offset_bottom = 15.0
+theme_override_constants/line_separation = -1
+theme_override_font_sizes/normal_font_size = 4
+theme_override_font_sizes/italics_font_size = 4
+bbcode_enabled = true
+text = "[i]Plan
+PlanType[/i]"
+
+[node name="Subtypes" type="RichTextLabel" parent="Title" unique_id=1150146794]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 1.0
+offset_right = 107.0
+offset_bottom = 15.0
+theme_override_constants/line_separation = -1
+theme_override_font_sizes/normal_font_size = 4
+theme_override_font_sizes/italics_font_size = 4
+bbcode_enabled = true
+text = "[i]Subtype[/i]
+[i]Subtype2[/i]
+"
+horizontal_alignment = 2
 
 [node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1161163096]
 custom_minimum_size = Vector2(108, 70)

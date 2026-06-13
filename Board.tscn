@@ -51,9 +51,9 @@ texture = ExtResource("1_nd4as")
 [node name="DeckResourceZone" type="Panel" parent="." unique_id=1596018730]
 z_index = -1
 layout_mode = 0
-offset_left = 7.0
+offset_left = 5.0
 offset_top = 804.0
-offset_right = 577.0
+offset_right = 571.0
 offset_bottom = 1074.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hq5ls")
@@ -200,37 +200,38 @@ offset_bottom = -46.0
 
 [node name="HandZone" type="Panel" parent="." unique_id=951992616]
 layout_mode = 0
-offset_left = 580.0
+offset_left = 574.0
 offset_top = 804.0
-offset_right = 1538.0
+offset_right = 1540.0
 offset_bottom = 1074.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_k0g80")
 
 [node name="Slot1" parent="HandZone" unique_id=627051699 instance=ExtResource("3_hq5ls")]
-position = Vector2(10, 10)
+position = Vector2(10, 9)
 scale = Vector2(1.67, 1.67)
 
 [node name="Slot2" parent="HandZone" unique_id=1259329329 instance=ExtResource("3_hq5ls")]
-position = Vector2(197.99998, 10)
+position = Vector2(200.99998, 9)
 scale = Vector2(1.67, 1.67)
 
 [node name="Slot3" parent="HandZone" unique_id=1501248551 instance=ExtResource("3_hq5ls")]
-position = Vector2(385.99997, 10)
+position = Vector2(391.00003, 9)
 scale = Vector2(1.67, 1.67)
 
 [node name="Slot4" parent="HandZone" unique_id=798267329 instance=ExtResource("3_hq5ls")]
-position = Vector2(575, 9)
+position = Vector2(582, 9)
 scale = Vector2(1.67, 1.67)
 
 [node name="Slot5" parent="HandZone" unique_id=1079276561 instance=ExtResource("3_hq5ls")]
-position = Vector2(764, 9)
+position = Vector2(772, 9)
 scale = Vector2(1.67, 1.67)
 
 [node name="DetailView" type="Panel" parent="." unique_id=175000195]
 layout_mode = 0
-offset_left = 1541.0
+offset_left = 1544.0
 offset_top = 577.0
-offset_right = 1910.0
+offset_right = 1913.0
 offset_bottom = 1074.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_grdf5")
@@ -242,5 +243,5 @@ scale = Vector2(3.17, 3.17)
 [node name="OpponentRegion" type="Panel" parent="." unique_id=1659057248]
 layout_mode = 0
 offset_right = 1920.0
-offset_bottom = 440.0
+offset_bottom = 390.0
 mouse_filter = 2

@@ -12,10 +12,16 @@ func add_card(_card: Card) -> void:
 	if card: add_child(card)
 	return
 	
+func remove_card() -> void:
+	if card: remove_child(card)
+	card = null
+	return
+	
 func _mouse_enter() -> void:
 	if card:
 		card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		can_grab = true
+		SignalBus.card_hovered.emit(card)
 	return
 
 func _mouse_exit() -> void:

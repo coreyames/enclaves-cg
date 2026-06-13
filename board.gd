@@ -1,11 +1,12 @@
 extends Control
 
-var cardset: Array[Card]  = []
-var decklist: Array[Card] = []
-var deck: Array[Card]     = []
-var discard: Array[Card]  = []
-var hand: Array[Card]     = []
-var detail: Card
+var cardset: Array[Card]      = []
+var decklist: Array[Card]     = []
+var deck: Array[Card]         = []
+var discard: Array[Card]      = []
+var hand: Array[Card]         = []
+var hand_slots: Array[Card2D] = []
+var current_detail: Card
 const card_2d_scene: PackedScene   = preload("res://Card2D.tscn")
 const base_card_scene: PackedScene = preload("res://Card.tscn")
 const plan_card_scene: PackedScene = preload("res://PlanCard.tscn")
@@ -27,10 +28,6 @@ func _ready() -> void:
 		return
 	deck = decklist.duplicate()
 	
-	var card_holder: Card2D = card_2d_scene.instantiate()
-	card_holder.add_card(decklist[0])
-	add_child(card_holder)
-	
 	# deck hidden and also discard when empty
 	$Deck/Card.flip()
 	$Discard/Card.flip()
@@ -48,7 +45,21 @@ func _ready() -> void:
 	$UtilityValue.value_changed.connect(_on_update_utility_value)
 	$DespairValue.value_changed.connect(_on_update_despair_value)
 	$StabilityValue.value_changed.connect(_on_update_stability_value)
+	
+	hand_slots = [
+		$HandZone/Slot1,
+		$HandZone/Slot2,
+		$HandZone/Slot3,
+		$HandZone/Slot4,
+		$HandZone/Slot5,
+	]
+
+	for i: int in range(hand_slots.size()):
+		draw_card_to_hand()
+
+	SignalBus.card_hovered.connect(_on_card_hovered)
 	return
+	
 
 func load_cards(path: String) -> Array[Card]:
 	var file_text: String = FileAccess.get_file_as_string(path)
@@ -78,7 +89,9 @@ func load_decklist(path: String) -> Array[Card]:
 	for id: int in parsed_plan_ids:
 		var card: Card = from_cardset_by_id(id)
 		if card:
-			_decklist.append(card)
+			var dupe_card: Card = card.duplicate() 
+			dupe_card.load_card()
+			_decklist.append(dupe_card)
 		else:
 			print("unable to find card by id %d" % [id])
 	return _decklist
@@ -91,7 +104,26 @@ func from_cardset_by_id(id: int) -> Card:
 		return null
 	return cardset[idx]
 	
-	
+func draw_card_to_hand() -> bool:
+	if deck.size() < 1:
+		print("deck empty! can't draw")
+		return false
+	elif hand.size() >= 5:
+		print("hand full! can't draw")
+		return false
+	hand.append(deck.pop_front())
+	update_hand_zone()
+	return true
+
+func update_hand_zone() -> void:
+	for slot: Card2D in hand_slots:
+		slot.remove_card()
+	var idx: int = 0
+	for card: Card in hand:
+		hand_slots[idx].add_card(card)
+		idx += 1
+	return
+
 func _on_update_water_value(_old: int, value: int) -> void:
 	values.water = value
 	return
@@ -114,6 +146,14 @@ func _on_update_despair_value(_old: int, value: int) -> void:
 
 func _on_update_stability_value(_old: int, value: int) -> void:
 	values.stability = value
+	return 
+
+func _on_card_hovered(card: Card) -> void:
+	var dupe_card: Card = card.duplicate() 
+	dupe_card.load_card()
+	if $DetailView/Detail.card:
+		$DetailView/Detail.remove_card()
+	$DetailView/Detail.add_card(dupe_card)
 	return
 
 func _input(event: InputEvent) -> void:

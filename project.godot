@@ -14,6 +14,10 @@ config/name="enclave-cg"
 run/main_scene="uid://filg5446ko2t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+SignalBus="*uid://d2ai2oohi5qd3"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1

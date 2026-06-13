@@ -1,5 +1,6 @@
 class_name Card extends PanelContainer
 
+@export
 var card_json: Dictionary
 var title: String
 var id: int

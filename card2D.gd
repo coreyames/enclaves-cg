@@ -1,4 +1,4 @@
-extends Area2D
+class_name Card2D extends Area2D
 
 var card: Card
 var grabbed: bool = false

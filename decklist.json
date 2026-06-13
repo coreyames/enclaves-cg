@@ -1,7 +1,9 @@
 {
     "Name" : "test decklist",
-    "Plans": [],
-    "Specialists": [],
-    "Utilities": [],
+    "Plans": [
+        0,0,0,0,0,0,0,0,0,0
+    ],
+    "Specialists":   [],
+    "Utilities":     [],
     "Contingencies": []
 }

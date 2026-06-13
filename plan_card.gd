@@ -29,6 +29,8 @@ func _ready() -> void:
 	return
 	
 func load_card() -> bool:
+	if card_json.has("id"):
+		id = card_json["id"]
 	if card_json.has("title"):
 		title = card_json["title"]
 	if card_json.has("img_path"):
@@ -42,7 +44,7 @@ func load_card() -> bool:
 	if card_json.has("failure"):
 		failure = card_json["failure"]
 	
-	if !(title && img_path && cost && types && success && failure):
+	if !(id && title && img_path && cost && types && success && failure):
 		return false
 	return true
 

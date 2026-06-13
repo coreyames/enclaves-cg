@@ -2,6 +2,7 @@ class_name Card extends PanelContainer
 
 var card_json: Dictionary
 var title: String
+var id: int
 var img_path: String
 var cost: String
 var costs: Vector3i
@@ -30,6 +31,8 @@ func _ready() -> void:
 	return
 	
 func load_card() -> bool:
+	if card_json.has("id"):
+		id = card_json["id"]
 	if card_json.has("title"):
 		title = card_json["title"]
 	if card_json.has("img_path"):
@@ -39,7 +42,7 @@ func load_card() -> bool:
 	if card_json.has("types"):
 		types = card_json["types"]
 	
-	if !(title && img_path && cost && types):
+	if !(id && title && img_path && cost && types):
 		return false
 	return true
 

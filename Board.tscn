@@ -200,43 +200,47 @@ offset_bottom = -46.0
 
 [node name="HandZone" type="Panel" parent="." unique_id=951992616]
 layout_mode = 0
-offset_left = 585.0
+offset_left = 580.0
 offset_top = 804.0
-offset_right = 1667.0
+offset_right = 1538.0
 offset_bottom = 1074.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_k0g80")
 
-[node name="Node2D" parent="HandZone" unique_id=627051699 instance=ExtResource("3_hq5ls")]
+[node name="Slot1" parent="HandZone" unique_id=627051699 instance=ExtResource("3_hq5ls")]
 position = Vector2(10, 10)
 scale = Vector2(1.67, 1.67)
 
-[node name="Node2D2" parent="HandZone" unique_id=1259329329 instance=ExtResource("3_hq5ls")]
-position = Vector2(195.99998, 10)
+[node name="Slot2" parent="HandZone" unique_id=1259329329 instance=ExtResource("3_hq5ls")]
+position = Vector2(197.99998, 10)
 scale = Vector2(1.67, 1.67)
 
-[node name="Node2D3" parent="HandZone" unique_id=1501248551 instance=ExtResource("3_hq5ls")]
-position = Vector2(381.99997, 10)
+[node name="Slot3" parent="HandZone" unique_id=1501248551 instance=ExtResource("3_hq5ls")]
+position = Vector2(385.99997, 10)
 scale = Vector2(1.67, 1.67)
 
-[node name="Node2D4" parent="HandZone" unique_id=798267329 instance=ExtResource("3_hq5ls")]
-position = Vector2(520, 10)
+[node name="Slot4" parent="HandZone" unique_id=798267329 instance=ExtResource("3_hq5ls")]
+position = Vector2(575, 9)
 scale = Vector2(1.67, 1.67)
+
+[node name="Slot5" parent="HandZone" unique_id=1079276561 instance=ExtResource("3_hq5ls")]
+position = Vector2(764, 9)
+scale = Vector2(1.67, 1.67)
+
+[node name="DetailView" type="Panel" parent="." unique_id=175000195]
+layout_mode = 0
+offset_left = 1541.0
+offset_top = 577.0
+offset_right = 1910.0
+offset_bottom = 1074.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_grdf5")
+
+[node name="Detail" parent="DetailView" unique_id=1709306070 instance=ExtResource("3_hq5ls")]
+position = Vector2(10, 10)
+scale = Vector2(3.17, 3.17)
 
 [node name="OpponentRegion" type="Panel" parent="." unique_id=1659057248]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 440.0
 mouse_filter = 2
-
-[node name="Panel" type="Panel" parent="." unique_id=175000195]
-layout_mode = 0
-offset_left = 1676.0
-offset_top = 760.0
-offset_right = 1910.0
-offset_bottom = 1074.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_grdf5")
-
-[node name="Node2D" parent="Panel" unique_id=1709306070 instance=ExtResource("3_hq5ls")]
-position = Vector2(7, 7)
-scale = Vector2(2, 2)

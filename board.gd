@@ -4,14 +4,15 @@ var cardset: Array[Card]  = []
 var decklist: Array[Card] = []
 var deck: Array[Card]     = []
 var discard: Array[Card]  = []
-const card_2d_scene: PackedScene   = preload("res://card2D.tscn")
+var hand: Array[Card]     = []
+var detail: Card
+const card_2d_scene: PackedScene   = preload("res://Card2D.tscn")
 const base_card_scene: PackedScene = preload("res://Card.tscn")
 const plan_card_scene: PackedScene = preload("res://PlanCard.tscn")
 const type_to_scene: Dictionary = {
 	"Base": base_card_scene,
 	"Plan": plan_card_scene
 }
-
 var values: Dictionary[String, int] 
 
 func _ready() -> void:
@@ -20,17 +21,20 @@ func _ready() -> void:
 		print("failed loading cardset")
 		return
 	
-	# TESTING card holder	
-	var new_card_2d: Node2D = card_2d_scene.instantiate()
-	new_card_2d.add_card(cardset[0])
-	add_child(new_card_2d)
+	decklist = load_decklist("res://decklist.json")
+	if decklist.size() < 1:
+		print("failed loading decklist")
+		return
+	deck = decklist.duplicate()
 	
-	# TODO load_deck()
-	# TODO create decklist format 
-
-	#"hide" deck and when empty, the discard
+	var card_holder: Card2D = card_2d_scene.instantiate()
+	card_holder.add_card(decklist[0])
+	add_child(card_holder)
+	
+	# deck hidden and also discard when empty
 	$Deck/Card.flip()
 	$Discard/Card.flip()
+	
 	values.water      = 0
 	values.food       = 0
 	values.specialist = 0
@@ -65,7 +69,28 @@ func load_cards(path: String) -> Array[Card]:
 	return _cardset
 	
 func load_decklist(path: String) -> Array[Card]:
-	return []
+	var file_text: String = FileAccess.get_file_as_string(path)
+	var _decklist: Array[Card] = []
+	if !FileAccess.get_open_error() == Error.OK:
+		return []
+	var parsed_json_dict: Dictionary = JSON.parse_string(file_text)
+	var parsed_plan_ids: Array = parsed_json_dict["Plans"]
+	for id: int in parsed_plan_ids:
+		var card: Card = from_cardset_by_id(id)
+		if card:
+			_decklist.append(card)
+		else:
+			print("unable to find card by id %d" % [id])
+	return _decklist
+	
+func from_cardset_by_id(id: int) -> Card:
+	var find_func: Callable = func(card: Card) -> bool:
+		return card.id == id
+	var idx: int = cardset.find_custom(find_func)
+	if idx < 0:
+		return null
+	return cardset[idx]
+	
 	
 func _on_update_water_value(_old: int, value: int) -> void:
 	values.water = value

@@ -44,8 +44,6 @@ func _ready() -> void:
 	$UtilityValue.value_changed.connect(_on_update_utility_value)
 	$DespairValue.value_changed.connect(_on_update_despair_value)
 	$StabilityValue.value_changed.connect(_on_update_stability_value)
-	
-	
 	return
 
 func load_cards(path: String) -> Array[Card]:
@@ -66,27 +64,30 @@ func load_cards(path: String) -> Array[Card]:
 			_cardset.append(new_card)
 	return _cardset
 	
-func _on_update_water_value(value: int) -> void:
+func load_decklist(path: String) -> Array[Card]:
+	return []
+	
+func _on_update_water_value(_old: int, value: int) -> void:
 	values.water = value
 	return
 
-func _on_update_food_value(value: int) -> void:
+func _on_update_food_value(_old: int, value: int) -> void:
 	values.food = value
 	return
 	
-func _on_update_specialist_value(value: int) -> void:
+func _on_update_specialist_value(_old: int, value: int) -> void:
 	values.specialist = value
 	return
 
-func _on_update_utility_value(value: int) -> void:
+func _on_update_utility_value(_old: int, value: int) -> void:
 	values.utility = value
 	return
 	
-func _on_update_despair_value(value: int) -> void:
+func _on_update_despair_value(_old: int, value: int) -> void:
 	values.despair = value
 	return
 
-func _on_update_stability_value(value: int) -> void:
+func _on_update_stability_value(_old: int, value: int) -> void:
 	values.stability = value
 	return
 

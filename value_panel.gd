@@ -1,4 +1,4 @@
-class_name ValuePanel extends Panel
+class_name ValuePanel extends PanelContainer
 
 signal value_changed(old_value: int, new_value: int)
 

@@ -8,10 +8,24 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq5ls"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0g80"]
+bg_color = Color(0.6, 0.6, 0.6, 0.011764706)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grdf5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
 
 [node name="Board" type="Control" unique_id=82553554]
 layout_mode = 3
@@ -37,23 +51,42 @@ texture = ExtResource("1_nd4as")
 [node name="DeckResourceZone" type="Panel" parent="." unique_id=1596018730]
 z_index = -1
 layout_mode = 0
-offset_left = 19.0
-offset_top = 794.00006
-offset_right = 74.81475
-offset_bottom = 825.0028
-scale = Vector2(11.108174, 8.669316)
+offset_left = 7.0
+offset_top = 804.0
+offset_right = 577.0
+offset_bottom = 1074.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hq5ls")
 
+[node name="DeckLabel" type="Label" parent="." unique_id=1690187641]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 1052.0
+offset_right = 107.0
+offset_bottom = 1066.0
+theme_override_font_sizes/font_size = 8
+text = "Deck"
+horizontal_alignment = 1
+
 [node name="Deck" parent="." unique_id=1162125077 instance=ExtResource("3_hq5ls")]
-position = Vector2(50, 889)
+position = Vector2(33, 898.99994)
 
 [node name="Card" parent="Deck" unique_id=1958935780 instance=ExtResource("4_k0g80")]
 offset_top = 2.0
 offset_bottom = 152.0
 
+[node name="DiscardLabel" type="Label" parent="." unique_id=196140118]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 1051.0
+offset_right = 248.0
+offset_bottom = 1065.0
+theme_override_font_sizes/font_size = 8
+text = "Discard"
+horizontal_alignment = 1
+
 [node name="Discard" parent="." unique_id=2138256710 instance=ExtResource("3_hq5ls")]
-position = Vector2(190, 889)
+position = Vector2(173, 898.99994)
 
 [node name="Card" parent="Discard" unique_id=1885169825 instance=ExtResource("4_k0g80")]
 offset_top = 2.0
@@ -61,106 +94,149 @@ offset_bottom = 152.0
 
 [node name="DespairLabel" type="Label" parent="." unique_id=34358770]
 layout_mode = 0
-offset_left = 230.0
-offset_top = 827.0
-offset_right = 295.0
-offset_bottom = 850.0
+offset_left = 213.0
+offset_top = 836.99994
+offset_right = 278.0
+offset_bottom = 859.99994
 text = "DESPAIR"
 
 [node name="DespairValue" parent="." unique_id=572943250 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 182.0
-offset_top = 819.0
-offset_right = -1698.0
-offset_bottom = -221.0
+offset_left = 165.0
+offset_top = 828.99994
+offset_right = -1715.0
+offset_bottom = -211.00006
 
 [node name="StabilityLabel" type="Label" parent="." unique_id=1615033683]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 828.0
-offset_right = 438.0
-offset_bottom = 851.0
+offset_left = 345.0
+offset_top = 837.99994
+offset_right = 421.0
+offset_bottom = 860.99994
 text = "STABILITY"
 
 [node name="StabilityValue" parent="." unique_id=2111911077 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 314.0
-offset_top = 819.0
-offset_right = -1566.0
-offset_bottom = -221.0
+offset_left = 297.0
+offset_top = 828.99994
+offset_right = -1583.0
+offset_bottom = -211.00006
 
 [node name="SustenanceLabel" type="Label" parent="." unique_id=847095959]
 layout_mode = 0
-offset_left = 467.0
-offset_top = 898.0
-offset_right = 570.0
-offset_bottom = 921.0
+offset_left = 450.0
+offset_top = 907.99994
+offset_right = 553.0
+offset_bottom = 930.99994
 text = "SUSTENANCE"
 
 [node name="FoodLabel" type="Label" parent="." unique_id=180173513]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 940.0
-offset_right = 564.0
-offset_bottom = 963.0
+offset_left = 501.0
+offset_top = 949.99994
+offset_right = 547.0
+offset_bottom = 972.99994
 text = "Food"
 
 [node name="FoodValue" parent="." unique_id=389279438 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 467.0
-offset_top = 931.0
-offset_right = -1413.0
-offset_bottom = -109.0
+offset_left = 450.0
+offset_top = 940.99994
+offset_right = -1430.0
+offset_bottom = -99.00006
 
 [node name="WaterLabel" type="Label" parent="." unique_id=1099637869]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 993.0
-offset_right = 572.0
-offset_bottom = 1016.0
+offset_left = 501.0
+offset_top = 1002.99994
+offset_right = 555.0
+offset_bottom = 1026.0
 text = "Water"
 
 [node name="WaterValue" parent="." unique_id=1301488623 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 467.0
-offset_top = 984.0
-offset_right = -1413.0
-offset_bottom = -56.0
+offset_left = 450.0
+offset_top = 993.99994
+offset_right = -1430.0
+offset_bottom = -46.0
 
 [node name="SupportLabel" type="Label" parent="." unique_id=2106476732]
 layout_mode = 0
-offset_left = 322.0
-offset_top = 898.0
-offset_right = 397.0
-offset_bottom = 921.0
+offset_left = 305.0
+offset_top = 907.99994
+offset_right = 380.0
+offset_bottom = 930.99994
 text = "SUPPORT"
 
 [node name="SpecialistLabel" type="Label" parent="." unique_id=1608401742]
 layout_mode = 0
-offset_left = 372.0
-offset_top = 940.0
-offset_right = 445.0
-offset_bottom = 963.0
+offset_left = 355.0
+offset_top = 949.99994
+offset_right = 428.0
+offset_bottom = 972.99994
 text = "Specialist"
 
 [node name="SpecialistValue" parent="." unique_id=1388372347 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 322.0
-offset_top = 931.0
-offset_right = -1558.0
-offset_bottom = -109.0
+offset_left = 305.0
+offset_top = 940.99994
+offset_right = -1575.0
+offset_bottom = -99.00006
 
 [node name="UtilityLabel" type="Label" parent="." unique_id=341787827]
 layout_mode = 0
-offset_left = 372.0
-offset_top = 993.0
-offset_right = 419.0
-offset_bottom = 1016.0
+offset_left = 355.0
+offset_top = 1002.99994
+offset_right = 402.0
+offset_bottom = 1026.0
 text = "Utility"
 
 [node name="UtilityValue" parent="." unique_id=1140798648 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 322.0
-offset_top = 984.0
-offset_right = -1558.0
-offset_bottom = -56.0
+offset_left = 305.0
+offset_top = 993.99994
+offset_right = -1575.0
+offset_bottom = -46.0
+
+[node name="HandZone" type="Panel" parent="." unique_id=951992616]
+layout_mode = 0
+offset_left = 585.0
+offset_top = 804.0
+offset_right = 1667.0
+offset_bottom = 1074.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k0g80")
+
+[node name="Node2D" parent="HandZone" unique_id=627051699 instance=ExtResource("3_hq5ls")]
+position = Vector2(10, 10)
+scale = Vector2(1.67, 1.67)
+
+[node name="Node2D2" parent="HandZone" unique_id=1259329329 instance=ExtResource("3_hq5ls")]
+position = Vector2(195.99998, 10)
+scale = Vector2(1.67, 1.67)
+
+[node name="Node2D3" parent="HandZone" unique_id=1501248551 instance=ExtResource("3_hq5ls")]
+position = Vector2(381.99997, 10)
+scale = Vector2(1.67, 1.67)
+
+[node name="Node2D4" parent="HandZone" unique_id=798267329 instance=ExtResource("3_hq5ls")]
+position = Vector2(520, 10)
+scale = Vector2(1.67, 1.67)
+
+[node name="OpponentRegion" type="Panel" parent="." unique_id=1659057248]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 440.0
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=175000195]
+layout_mode = 0
+offset_left = 1676.0
+offset_top = 760.0
+offset_right = 1910.0
+offset_bottom = 1074.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_grdf5")
+
+[node name="Node2D" parent="Panel" unique_id=1709306070 instance=ExtResource("3_hq5ls")]
+position = Vector2(7, 7)
+scale = Vector2(2, 2)

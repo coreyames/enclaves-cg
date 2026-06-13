@@ -37,6 +37,7 @@
 	"cards": {
 		"Plan":[
 			{
+				"id": 0,
 				"title": "New Plan 1",
 				"types": ["Search", "Retrieval", "Subversion"],
 				"cost": "1:1:1",
@@ -45,6 +46,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 1,
 				"title": "New Plan 2",
 				"types": ["Search", "Retrieval", "Subversion"],
 				"cost": "1:1:1",
@@ -53,6 +55,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 2,
 				"title": "New Plan 3",
 				"types": [],
 				"cost": "1:1:1",
@@ -61,6 +64,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 3,
 				"title": "New Plan 4",
 				"types": [],
 				"cost": "1:1:1",
@@ -69,6 +73,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 4,
 				"title": "New Plan 5",
 				"types": [],
 				"cost": "1:1:1",
@@ -77,6 +82,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 5,
 				"title": "New Plan 6",
 				"types": [],
 				"cost": "1:1:1",
@@ -85,6 +91,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 6,
 				"title": "New Plan 7",
 				"types": [],
 				"cost": "1:1:1",
@@ -93,6 +100,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 7,
 				"title": "New Plan 8",
 				"types": [],
 				"cost": "1:1:1",
@@ -101,6 +109,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 8,
 				"title": "New Plan 9",
 				"types": [],
 				"cost": "1:1:1",
@@ -109,6 +118,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 9,
 				"title": "New Plan 10",
 				"types": [],
 				"cost": "1:1:1",
@@ -117,6 +127,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 10,
 				"title": "New Plan 11",
 				"types": [],
 				"cost": "1:1:1",
@@ -125,6 +136,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 11,
 				"title": "New Plan 12",
 				"types": [],
 				"cost": "1:1:1",
@@ -133,6 +145,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 12,
 				"title": "New Plan 13",
 				"types": [],
 				"cost": "1:1:1",
@@ -141,6 +154,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 13,
 				"title": "New Plan 14",
 				"types": [],
 				"cost": "1:1:1",
@@ -149,6 +163,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 14,
 				"title": "New Plan 15",
 				"types": [],
 				"cost": "1:1:1",
@@ -157,6 +172,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 15,
 				"title": "New Plan 16",
 				"types": [],
 				"cost": "1:1:1",
@@ -165,6 +181,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 16,
 				"title": "New Plan 17",
 				"types": [],
 				"cost": "1:1:1",
@@ -173,6 +190,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 17,
 				"title": "New Plan 18",
 				"types": [],
 				"cost": "1:1:1",
@@ -181,6 +199,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 18,
 				"title": "New Plan 19",
 				"types": [],
 				"cost": "1:1:1",
@@ -189,6 +208,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 19,
 				"title": "New Plan 20",
 				"types": [],
 				"cost": "1:1:1",
@@ -199,6 +219,7 @@
 		],
 		"Specialist": [
 			{
+				"id": 20,
 				"title": "New Specialist 1",
 				"types": [],
 				"cost": "1:1:1",
@@ -206,6 +227,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 21,
 				"title": "New Specialist 2",
 				"types": [],
 				"cost": "1:1:1",
@@ -213,6 +235,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 22,
 				"title": "New Specialist 3",
 				"types": [],
 				"cost": "1:1:1",
@@ -220,6 +243,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 23,
 				"title": "New Specialist 4",
 				"types": [],
 				"cost": "1:1:1",
@@ -227,6 +251,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 24,
 				"title": "New Specialist 5",
 				"types": [],
 				"cost": "1:1:1",
@@ -234,6 +259,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 25,
 				"title": "New Specialist 6",
 				"types": [],
 				"cost": "1:1:1",
@@ -241,6 +267,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 26,
 				"title": "New Specialist 7",
 				"types": [],
 				"cost": "1:1:1",
@@ -250,6 +277,7 @@
 		],
 		"Utility":    [
 			{
+				"id": 27,
 				"title": "New Utility 1",
 				"types": [],
 				"cost": "1:1:1",
@@ -257,6 +285,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 28,
 				"title": "New Utility 2",
 				"types": [],
 				"cost": "1:1:1",
@@ -264,6 +293,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 29,
 				"title": "New Utility 3",
 				"types": [],
 				"cost": "1:1:1",
@@ -271,6 +301,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 30,
 				"title": "New Utility 4",
 				"types": [],
 				"cost": "1:1:1",
@@ -278,6 +309,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 31,
 				"title": "New Utility 5",
 				"types": [],
 				"cost": "1:1:1",
@@ -285,6 +317,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 32,
 				"title": "New Utility 6",
 				"types": [],
 				"cost": "1:1:1",
@@ -292,6 +325,7 @@
 				"effect": "whatever may need to go here"
 			},
 			{
+				"id": 33,
 				"title": "New Utility 7",
 				"types": [],
 				"cost": "1:1:1",
@@ -301,6 +335,7 @@
 		],
 		"Contingency":[
 			{
+				"id": 34,
 				"title": "New Contingency 1",
 				"types": [],
 				"cost": "1:1:1",
@@ -309,6 +344,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 35,
 				"title": "New Contingency 2",
 				"types": [],
 				"cost": "1:1:1",
@@ -317,6 +353,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 36,
 				"title": "New Contingency 3",
 				"types": [],
 				"cost": "1:1:1",
@@ -325,6 +362,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 37,
 				"title": "New Contingency 4",
 				"types": [],
 				"cost": "1:1:1",
@@ -333,6 +371,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 38,
 				"title": "New Contingency 5",
 				"types": [],
 				"cost": "1:1:1",
@@ -341,6 +380,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 39,
 				"title": "New Contingency 6",
 				"types": [],
 				"cost": "1:1:1",
@@ -349,6 +389,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 40,
 				"title": "New Contingency 7",
 				"types": [],
 				"cost": "1:1:1",
@@ -357,6 +398,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 41,
 				"title": "New Contingency 8",
 				"types": [],
 				"cost": "1:1:1",
@@ -365,6 +407,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 42,
 				"title": "New Contingency 9",
 				"types": [],
 				"cost": "1:1:1",
@@ -373,6 +416,7 @@
 				"failure": "failure text"				
 			},
 			{
+				"id": 43,
 				"title": "New Contingency 10",
 				"types": [],
 				"cost": "1:1:1",

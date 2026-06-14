@@ -42,7 +42,8 @@ script = ExtResource("1_3ng4l")
 [node name="Background" type="TextureRect" parent="." unique_id=212307771]
 modulate = Color(2.0606077, 1.7730843, 1.5574417, 0.09411765)
 layout_mode = 0
-offset_right = 7572.0
+offset_left = -0.99999994
+offset_right = 7571.0
 offset_bottom = 5152.0
 scale = Vector2(0.25331205, 0.2092717)
 mouse_filter = 2
@@ -239,9 +240,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_grdf5")
 [node name="Detail" parent="DetailView" unique_id=1709306070 instance=ExtResource("3_hq5ls")]
 position = Vector2(10, 10)
 scale = Vector2(3.17, 3.17)
+input_pickable = false
 
 [node name="OpponentRegion" type="Panel" parent="." unique_id=1659057248]
 layout_mode = 0
-offset_right = 1920.0
+offset_left = -1.0
+offset_right = 1919.0
 offset_bottom = 390.0
 mouse_filter = 2
+
+[node name="PlayerRegion" type="Area2D" parent="." unique_id=2098450578]
+position = Vector2(-1, 390)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRegion" unique_id=1854783127]
+polygon = PackedVector2Array(0, 0, 0, 414, 1545, 414, 1545, 187, 1918, 187, 1919, 0)

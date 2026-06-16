@@ -6,6 +6,7 @@ var deck: Array[Card]         = []
 var discard: Array[Card]      = []
 var hand: Array[Card]         = []
 var hand_slots: Array[Card2D] = []
+var hand_slots_dict: Dictionary[Card2D, Vector2] = {}
 var current_detail: Card
 var mouse_in_player_region: bool = false
 var grabbed_card2d: Card2D
@@ -59,12 +60,18 @@ func _ready() -> void:
 		$HandZone/Slot2,
 		$HandZone/Slot3,
 		$HandZone/Slot4,
-		$HandZone/Slot5,
+		$HandZone/Slot5
 	]
-
-	# draw hand
-	#for i: int in range(hand_slots.size()):
-	for i: int in range(hand_slots.size()-1):
+	
+	hand_slots_dict = {
+		$HandZone/Slot1: $HandZone/Slot1.global_position, 
+		$HandZone/Slot2: $HandZone/Slot2.global_position,
+		$HandZone/Slot3: $HandZone/Slot3.global_position,
+		$HandZone/Slot4: $HandZone/Slot4.global_position,
+		$HandZone/Slot5: $HandZone/Slot5.global_position,
+	}
+	
+	for i: int in range(hand_slots_dict.size()-1):
 		draw_card_to_hand()
 
 	SignalBus.card_hovered.connect(_on_card_hovered)
@@ -163,14 +170,42 @@ func _on_card2d_grabbed(card2d: Card2D) -> void:
 	grabbed_card2d = card2d
 	return
 	
-func _on_card2d_dropped(dropped_at: Vector2) -> void:
+func _on_card2d_dropped(_dropped_at: Vector2) -> void:
+	var new_card2d: Card2D = card_2d_scene.instantiate()
+	
 	if !mouse_in_player_region:
 		if grabbed_card2d_start_position:
 			grabbed_card2d.global_position = grabbed_card2d_start_position
+			grabbed_card2d = null
+			grabbed_card2d_start_position = Vector2.INF
+			return
+	if grabbed_card2d.get_parent() != $HandZone:
+		pass
 	elif grabbed_card2d.get_parent() == $HandZone:
-		grabbed_card2d.get_parent().remove_child(grabbed_card2d)
-		add_child(grabbed_card2d)
-		grabbed_card2d.global_position = dropped_at		
+		new_card2d.card = plan_card_scene.instantiate()
+		new_card2d.input_pickable = true
+		new_card2d.scale = Vector2.ONE
+		new_card2d.global_position = grabbed_card2d.global_position
+		new_card2d.card.card_json = grabbed_card2d.card.card_json
+		new_card2d.card.load_card()
+		add_child(new_card2d)
+		new_card2d.add_card(new_card2d.card)
+		
+		grabbed_card2d.global_position = hand_slots_dict[grabbed_card2d]
+		grabbed_card2d.remove_card()
+		
+	var card_ref: Card2D = new_card2d if new_card2d.get_parent() != null else grabbed_card2d
+	
+	if card_ref.global_position.y < $PlayerRegion.global_position.y:
+		card_ref.global_position.y = $PlayerRegion.global_position.y + 10
+	elif card_ref.global_position.y + 160 > $DeckResourceArea.global_position.y:
+		card_ref.global_position.y = $DeckResourceArea.global_position.y - 160
+	
+	if card_ref.global_position.x + 120 > $DetailView.global_position.x:
+		card_ref.global_position.x = $DetailView.global_position.x - 120
+		if card_ref.global_position.y + 160 > $DetailView.global_position.y:
+			card_ref.global_position.y = $DetailView.global_position.y - 160 
+	
 	grabbed_card2d = null
 	grabbed_card2d_start_position = Vector2.INF
 	return

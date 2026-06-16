@@ -13,6 +13,9 @@ border_width_top = 7
 border_width_right = 7
 border_width_bottom = 7
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grdf5"]
+size = Vector2(567, 269)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0g80"]
 bg_color = Color(0.6, 0.6, 0.6, 0.011764706)
 border_width_left = 7
@@ -26,6 +29,9 @@ border_width_left = 7
 border_width_top = 7
 border_width_right = 7
 border_width_bottom = 7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0g80"]
+size = Vector2(1919, 387)
 
 [node name="Board" type="Control" unique_id=82553554]
 layout_mode = 3
@@ -49,15 +55,19 @@ scale = Vector2(0.25331205, 0.2092717)
 mouse_filter = 2
 texture = ExtResource("1_nd4as")
 
-[node name="DeckResourceZone" type="Panel" parent="." unique_id=1596018730]
+[node name="DeckResourceArea" type="Area2D" parent="." unique_id=2091567842]
+position = Vector2(5, 804)
+
+[node name="DeckResourceZone" type="Panel" parent="DeckResourceArea" unique_id=1596018730]
 z_index = -1
-layout_mode = 0
-offset_left = 5.0
-offset_top = 804.0
-offset_right = 571.0
-offset_bottom = 1074.0
-mouse_filter = 2
+offset_right = 566.0
+offset_bottom = 270.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_hq5ls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeckResourceArea" unique_id=504285872]
+position = Vector2(283.5, 134.5)
+shape = SubResource("RectangleShape2D_grdf5")
 
 [node name="DeckLabel" type="Label" parent="." unique_id=1690187641]
 layout_mode = 0
@@ -242,12 +252,18 @@ position = Vector2(10, 10)
 scale = Vector2(3.17, 3.17)
 input_pickable = false
 
-[node name="OpponentRegion" type="Panel" parent="." unique_id=1659057248]
-layout_mode = 0
-offset_left = -1.0
-offset_right = 1919.0
+[node name="OppenentRegion" type="Area2D" parent="." unique_id=1385813240]
+position = Vector2(-1, 0)
+
+[node name="OpponentRegionPanel" type="Panel" parent="OppenentRegion" unique_id=1659057248]
+z_index = -1
+offset_right = 1920.0
 offset_bottom = 390.0
-mouse_filter = 2
+mouse_filter = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OppenentRegion" unique_id=414793274]
+position = Vector2(959.5, 194.5)
+shape = SubResource("RectangleShape2D_k0g80")
 
 [node name="PlayerRegion" type="Area2D" parent="." unique_id=2098450578]
 position = Vector2(-1, 390)

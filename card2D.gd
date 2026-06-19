@@ -3,6 +3,7 @@ class_name Card2D extends Area2D
 var card: Card
 var grabbed: bool = false
 var can_grab: bool = false
+var never_grab: bool = false
 
 func _ready() -> void:
 	return
@@ -20,7 +21,7 @@ func remove_card() -> void:
 func _mouse_enter() -> void:
 	if card:
 		card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		can_grab = true
+		can_grab = !(true && never_grab)
 		SignalBus.card_hovered.emit(card)
 	return
 
@@ -35,10 +36,12 @@ func _input(event: InputEvent) -> void:
 			if can_grab: 
 				card.mouse_default_cursor_shape = Control.CURSOR_DRAG
 				grabbed = true
+				z_index = 2
 				SignalBus.card2d_grabbed.emit(self)
 		elif event.is_action_released("select") && grabbed:
 			card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			grabbed = false
+			z_index = 1
 			SignalBus.card2d_dropped.emit(event.global_position)
 	elif event is InputEventMouseMotion && grabbed:
 		var mouse_delta: Vector2 = event.relative

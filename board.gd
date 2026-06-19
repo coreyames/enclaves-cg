@@ -1,9 +1,9 @@
 extends Control
 
+var deck: Stack2D
+var disc: Stack2D
 var cardset: Array[Card]      = []
 var decklist: Array[Card]     = []
-var deck: Array[Card]         = []
-var discard: Array[Card]      = []
 var hand: Array[Card]         = []
 var hand_slots: Array[Card2D] = []
 var hand_slots_dict: Dictionary[Card2D, Vector2] = {}
@@ -11,6 +11,7 @@ var current_detail: Card
 var mouse_in_player_region: bool = false
 var grabbed_card2d: Card2D
 var grabbed_card2d_start_position: Vector2
+var limit_hand_by: int = 2
 
 const card_2d_scene: PackedScene   = preload("res://Card2D.tscn")
 const base_card_scene: PackedScene = preload("res://Card.tscn")
@@ -22,6 +23,9 @@ const type_to_scene: Dictionary = {
 var values: Dictionary[String, int] 
 
 func _ready() -> void:
+	deck = $Deck
+	disc = $Discard
+	
 	# load active cardset
 	cardset = load_cards("res://cards.json")
 	if cardset.size() < 1:
@@ -33,12 +37,12 @@ func _ready() -> void:
 	if decklist.size() < 1:
 		print("failed loading decklist")
 		return
-	deck = decklist.duplicate()
+
+	deck.contents = decklist.duplicate()
+	deck.shuffle()
 	
 	# deck hidden and also discard when empty
-	$Deck/Card.flip()
-	$Discard/Card.flip()
-	
+
 	# setup value tracker and tie to ui
 	values.water      = 0
 	values.food       = 0
@@ -71,14 +75,23 @@ func _ready() -> void:
 		$HandZone/Slot5: $HandZone/Slot5.global_position,
 	}
 	
-	for i: int in range(hand_slots_dict.size()-1):
-		draw_card_to_hand()
+	for i: int in range(hand_slots_dict.size()-limit_hand_by):
+		drawn_card_to_hand(deck.draw_no_emit())
+
+	disc.modulate = Color(0, 0, 0, 1)
+	deck.card.flip()
 
 	SignalBus.card_hovered.connect(_on_card_hovered)
 	$PlayerRegion.mouse_entered.connect(_on_mouse_entered_player_region)
 	$PlayerRegion.mouse_exited.connect(_on_mouse_exited_player_region)
 	SignalBus.card2d_grabbed.connect(_on_card2d_grabbed)
 	SignalBus.card2d_dropped.connect(_on_card2d_dropped)
+	SignalBus.card_draw.connect(_on_card_draw)
+	
+	return
+	
+func _on_card_draw(_card: Card) -> void:
+	drawn_card_to_hand(_card)	
 	return
 	
 func _input(event: InputEvent) -> void:
@@ -133,15 +146,12 @@ func from_cardset_by_id(id: int) -> Card:
 	return cardset[idx]
 	
 # draw a card and update the hand
-func draw_card_to_hand() -> bool:
-	if deck.size() < 1:
-		print("deck empty! can't draw")
-		return false
+func drawn_card_to_hand(drawn_card: Card) -> bool:
+	if drawn_card:
+		hand.append(drawn_card)
+		update_hand_zone()
 	elif hand.size() >= 5:
 		print("hand full! can't draw")
-		return false
-	hand.append(deck.pop_front())
-	update_hand_zone()
 	return true
 
 # card draw results in hand "rerender"
@@ -150,6 +160,7 @@ func update_hand_zone() -> void:
 		slot.remove_card()
 	var idx: int = 0
 	for card: Card in hand:
+		if card.face_down: card.flip()
 		hand_slots[idx].add_card(card)
 		idx += 1
 	return

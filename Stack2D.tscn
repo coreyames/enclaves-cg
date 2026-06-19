@@ -1,13 +1,12 @@
-[gd_scene format=3 uid="uid://bb5n52c5sx3eb"]
+[gd_scene format=3 uid="uid://dqcsyrc0sa7t3"]
 
-[ext_resource type="Script" uid="uid://2xd5lxp04k32" path="res://card2D.gd" id="1_elx0p"]
+[ext_resource type="Script" uid="uid://cqg7bwx6s5oy3" path="res://stack_2d.gd" id="1_b4gj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0qdg"]
 size = Vector2(110, 150)
 
 [node name="Node2D" type="Area2D" unique_id=1162125077]
-z_index = 1
-script = ExtResource("1_elx0p")
+script = ExtResource("1_b4gj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869969107]
 position = Vector2(55, 75)

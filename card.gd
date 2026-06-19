@@ -12,6 +12,7 @@ var types: Array
 var face_down: bool
 
 func _ready() -> void:
+	
 	$Title/Image.texture.resource_path = img_path
 	$Title.text = title
 		
@@ -29,6 +30,11 @@ func _ready() -> void:
 			
 	if types:
 		handle_types(types)
+
+	if face_down: 
+		modulate = Color(0, 0, 0, 1)
+	else:
+		modulate = Color(1, 1, 1, 1)
 	return
 	
 func load_card() -> bool:

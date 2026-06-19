@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 SignalBus="*uid://d2ai2oohi5qd3"
+Settings="*uid://d2csjguws4hd5"
 
 [debug]
 

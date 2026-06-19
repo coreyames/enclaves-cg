@@ -93,7 +93,6 @@ func _ready() -> void:
 	return
 	
 func _on_card_draw(_card: Card) -> void:
-	print(_card)
 	if hand.size() >= max_hand_size:
 		print("hand full! can't draw")
 	else:
@@ -154,7 +153,6 @@ func from_cardset_by_id(id: int) -> Card:
 # draw a card and update the hand
 func drawn_card_to_hand(drawn_card: Card) -> bool:
 	if drawn_card:
-		print(drawn_card.title)
 		hand.append(drawn_card)
 		update_hand_zone()
 	return true

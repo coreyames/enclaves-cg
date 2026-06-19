@@ -9,6 +9,7 @@ var click_timer: Timer
 var check_double_click: bool = true
 var handref: Array[Card]
 var max_hand_size: int = 5
+var _eventref: InputEvent
 
 func _ready() -> void:
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
@@ -29,7 +30,8 @@ func _input(event: InputEvent) -> void:
 		if check_double_click:
 			check_double_click = false
 			can_grab = true
-			click_timer.start()
+			click_timer.start() 
+			print(event)
 			input_event.connect(_on_do_double_click)
 	elif event is InputEventMouseButton && event.is_action_released("select"):
 		can_grab = false
@@ -38,7 +40,6 @@ func _input(event: InputEvent) -> void:
 func _on_do_double_click(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton && event.button_index == 1 && event.is_action_pressed("select"):
 		if event.double_click:
-			print('double?')
 			input_event.disconnect(_on_do_double_click)
 			SignalBus.card_draw.emit(draw_no_emit())
 			check_double_click = true
@@ -47,9 +48,9 @@ func _on_do_double_click(_viewport: Viewport, event: InputEvent, _shape_idx: int
 	return
 	
 func _on_click_timer_single_click() -> void:
-	if check_double_click && can_grab:
+	if !check_double_click && can_grab:
 		var new_card2d: Card2D = Card2D.new()
-		new_card2d.card = draw()
+		new_card2d.card = draw_no_emit()
 		last_removed_idx = 0
 		new_card2d.card.load_card() 
 		new_card2d.add_card(new_card2d.card)			

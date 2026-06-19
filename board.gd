@@ -6,12 +6,12 @@ var cardset: Array[Card]      = []
 var decklist: Array[Card]     = []
 var hand: Array[Card]         = []
 var hand_slots: Array[Card2D] = []
+var max_hand_size: int        = 5
 var hand_slots_dict: Dictionary[Card2D, Vector2] = {}
 var current_detail: Card
 var mouse_in_player_region: bool = false
 var grabbed_card2d: Card2D
 var grabbed_card2d_start_position: Vector2
-var limit_hand_by: int = 2
 
 const card_2d_scene: PackedScene   = preload("res://Card2D.tscn")
 const base_card_scene: PackedScene = preload("res://Card.tscn")
@@ -75,7 +75,9 @@ func _ready() -> void:
 		$HandZone/Slot5: $HandZone/Slot5.global_position,
 	}
 	
-	for i: int in range(hand_slots_dict.size()-limit_hand_by):
+	max_hand_size = hand_slots_dict.size()
+	
+	for i: int in range(max_hand_size-2):
 		drawn_card_to_hand(deck.draw_no_emit())
 
 	disc.modulate = Color(0, 0, 0, 1)
@@ -91,7 +93,11 @@ func _ready() -> void:
 	return
 	
 func _on_card_draw(_card: Card) -> void:
-	drawn_card_to_hand(_card)	
+	print(_card)
+	if hand.size() >= max_hand_size:
+		print("hand full! can't draw")
+	else:
+		drawn_card_to_hand(_card)	
 	return
 	
 func _input(event: InputEvent) -> void:
@@ -148,10 +154,9 @@ func from_cardset_by_id(id: int) -> Card:
 # draw a card and update the hand
 func drawn_card_to_hand(drawn_card: Card) -> bool:
 	if drawn_card:
+		print(drawn_card.title)
 		hand.append(drawn_card)
 		update_hand_zone()
-	elif hand.size() >= 5:
-		print("hand full! can't draw")
 	return true
 
 # card draw results in hand "rerender"

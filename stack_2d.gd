@@ -7,6 +7,8 @@ var stack_contents_grabbed: bool = false
 var last_removed_idx: int = -1
 var click_timer: Timer
 var check_double_click: bool = true
+var handref: Array[Card]
+var max_hand_size: int = 5
 
 func _ready() -> void:
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
@@ -15,6 +17,7 @@ func _ready() -> void:
 	click_timer.one_shot = true
 	click_timer.timeout.connect(_on_click_timer_single_click)
 	modulate = Color(0, 0, 0, 1)
+	handref = get_parent().hand
 	add_child(click_timer)
 	return
 
@@ -33,19 +36,18 @@ func _input(event: InputEvent) -> void:
 	return
 
 func _on_do_double_click(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
-	print(event)
 	if event is InputEventMouseButton && event.button_index == 1 && event.is_action_pressed("select"):
 		if event.double_click:
 			print('double?')
 			input_event.disconnect(_on_do_double_click)
-			SignalBus.card_draw.emit(draw())
+			SignalBus.card_draw.emit(draw_no_emit())
 			check_double_click = true
 			can_grab = false
 			click_timer.stop()
 	return
 	
 func _on_click_timer_single_click() -> void:
-	if !check_double_click && can_grab:
+	if check_double_click && can_grab:
 		var new_card2d: Card2D = Card2D.new()
 		new_card2d.card = draw()
 		last_removed_idx = 0
@@ -97,11 +99,17 @@ func draw() -> Card:
 	if contents.size() < 1:
 		print("deck empty! can't draw")
 		return null
+	if handref.size() >= max_hand_size:
+		print("deck full! can't draw")
+		return null
 	return take_card(0)
 	
 func draw_no_emit() -> Card:
 	if contents.size() < 1:
 		print("deck empty! can't draw")
+		return null
+	if handref.size() >= max_hand_size:
+		print("deck full! can't draw")
 		return null
 	return take_card(0, false)
 

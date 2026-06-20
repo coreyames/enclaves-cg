@@ -9,7 +9,6 @@ var click_timer: Timer
 var check_double_click: bool = true
 var handref: Array[Card]
 var max_hand_size: int = 5
-var _eventref: InputEvent
 
 func _ready() -> void:
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
@@ -17,7 +16,6 @@ func _ready() -> void:
 	click_timer.wait_time = Settings.DOUBLE_CLICK_THRESHOLD
 	click_timer.one_shot = true
 	click_timer.timeout.connect(_on_click_timer_single_click)
-	modulate = Color(0, 0, 0, 1)
 	handref = get_parent().hand
 	add_child(click_timer)
 	return
@@ -30,8 +28,7 @@ func _input(event: InputEvent) -> void:
 		if check_double_click:
 			check_double_click = false
 			can_grab = true
-			click_timer.start() 
-			print(event)
+			click_timer.start()
 			input_event.connect(_on_do_double_click)
 	elif event is InputEventMouseButton && event.is_action_released("select"):
 		can_grab = false
@@ -48,20 +45,21 @@ func _on_do_double_click(_viewport: Viewport, event: InputEvent, _shape_idx: int
 	return
 	
 func _on_click_timer_single_click() -> void:
-	if !check_double_click && can_grab:
+	if !check_double_click && can_grab && contents.size() > 0:
 		var new_card2d: Card2D = Card2D.new()
 		new_card2d.card = draw_no_emit()
-		last_removed_idx = 0
-		new_card2d.card.load_card() 
-		new_card2d.add_card(new_card2d.card)			
-		can_grab = false
-		stack_contents_grabbed = true
-		new_card2d.grabbed = true
-		new_card2d.can_grab = false
-		get_tree().current_scene.add_child(new_card2d)
-		new_card2d.global_position = global_position
-		new_card2d.card.mouse_default_cursor_shape = Control.CURSOR_DRAG
-		SignalBus.card2d_grabbed.emit(new_card2d)
+		if new_card2d.card: 
+			last_removed_idx = 0
+			new_card2d.card.load_card() 
+			new_card2d.add_card(new_card2d.card)			
+			can_grab = false
+			stack_contents_grabbed = true
+			new_card2d.grabbed = true
+			new_card2d.can_grab = false
+			get_tree().current_scene.add_child(new_card2d)
+			new_card2d.global_position = global_position
+			new_card2d.card.mouse_default_cursor_shape = Control.CURSOR_DRAG
+			SignalBus.card2d_grabbed.emit(new_card2d)
 		
 	input_event.disconnect(_on_do_double_click)
 	check_double_click = true
@@ -90,7 +88,7 @@ func take_card(from_top: int, emit: bool = true) -> Card:
 	taken_card = contents.pop_at(from_top)
 	if contents.size() < 1:
 		remove_display_card()
-	if from_top >= 0: 
+	elif from_top >= 0: 
 		remove_display_card()
 		add_card(contents[0])
 	if emit: SignalBus.card_draw.emit(taken_card)

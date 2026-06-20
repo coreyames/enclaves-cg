@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpri2t17ijwtj" path="res://plan_card.gd" id="1_agi7e"]
 [ext_resource type="Texture2D" uid="uid://dcuem7bxr6sxi" path="res://card-imgs/example_card_img.jpg" id="2_cnx0u"]
+[ext_resource type="Texture2D" uid="uid://bexwydx6smb20" path="res://card-imgs/pexels-konstantin-alexeevich.jpg" id="3_cnx0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dd2wi"]
 content_margin_bottom = 5.0
@@ -47,6 +48,19 @@ colors = PackedColorArray(0, 0.61960787, 1, 1, 0, 0.81960785, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wi8ie"]
 gradient = SubResource("Gradient_3ujke")
 width = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqa22"]
+bg_color = Color(0.6, 0.6, 0.6, 0.019607844)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 1.0
+expand_margin_right = 1.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dd2wi"]
 
@@ -185,6 +199,28 @@ text = "[i]Subtype[/i]
 [i]Subtype2[/i]
 "
 horizontal_alignment = 2
+
+[node name="Cardback" type="TextureRect" parent="Title" unique_id=1436763659]
+z_index = 1
+custom_maximum_size = Vector2(106, 147)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 108.0
+offset_bottom = 146.0
+texture = ExtResource("3_cnx0u")
+
+[node name="Panel" type="Panel" parent="Title/Cardback" unique_id=1897825319]
+z_index = 1
+custom_minimum_size = Vector2(110, 150)
+custom_maximum_size = Vector2(108, 149)
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 107.0
+offset_bottom = 148.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_lqa22")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1161163096]
 custom_minimum_size = Vector2(108, 70)

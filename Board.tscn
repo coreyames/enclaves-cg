@@ -102,33 +102,33 @@ position = Vector2(165, 898)
 
 [node name="DespairLabel" type="Label" parent="." unique_id=34358770]
 layout_mode = 0
-offset_left = 213.0
-offset_top = 836.99994
-offset_right = 278.0
-offset_bottom = 859.99994
+offset_left = 377.0
+offset_top = 831.0
+offset_right = 442.0
+offset_bottom = 854.0
 text = "DESPAIR"
 
 [node name="DespairValue" parent="." unique_id=572943250 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 165.0
-offset_top = 828.99994
-offset_right = -1715.0
-offset_bottom = -211.00006
+offset_left = 450.0
+offset_top = 822.0
+offset_right = -1430.0
+offset_bottom = -218.0
 
 [node name="StabilityLabel" type="Label" parent="." unique_id=1615033683]
 layout_mode = 0
-offset_left = 345.0
-offset_top = 837.99994
-offset_right = 421.0
-offset_bottom = 860.99994
+offset_left = 220.0
+offset_top = 831.0
+offset_right = 297.0
+offset_bottom = 854.0
 text = "STABILITY"
 
 [node name="StabilityValue" parent="." unique_id=2111911077 instance=ExtResource("5_k0g80")]
 layout_mode = 1
-offset_left = 297.0
-offset_top = 828.99994
-offset_right = -1583.0
-offset_bottom = -211.00006
+offset_left = 305.0
+offset_top = 822.0
+offset_right = -1575.0
+offset_bottom = -218.0
 
 [node name="SustenanceLabel" type="Label" parent="." unique_id=847095959]
 layout_mode = 0

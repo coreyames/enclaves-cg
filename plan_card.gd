@@ -68,10 +68,3 @@ func handle_types(types_array: Array) -> bool:
 		sub2 = types_array[2]
 	$Title/Subtypes.text = "[i]%s[/i]\n[i]%s[/i]" % [sub1, sub2]
 	return true
-
-func flip() -> void:
-	face_down = !face_down
-	if face_down: 
-		modulate = Color(0, 0, 0, 1)
-	else:
-		modulate = Color(1, 1, 1, 1)

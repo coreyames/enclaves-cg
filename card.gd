@@ -1,5 +1,7 @@
 class_name Card extends PanelContainer
 
+const cardback: Resource = preload("res://card-imgs/pexels-konstantin-alexeevich.jpg")
+
 @export
 var card_json: Dictionary
 var title: String
@@ -9,10 +11,10 @@ var cost: String
 var costs: Vector3i
 var types: Array
 
-var face_down: bool
+var face_down: bool = false
 
 func _ready() -> void:
-	
+	$Title/Cardback.visible = face_down
 	$Title/Image.texture.resource_path = img_path
 	$Title.text = title
 		
@@ -30,11 +32,6 @@ func _ready() -> void:
 			
 	if types:
 		handle_types(types)
-
-	if face_down: 
-		modulate = Color(0, 0, 0, 1)
-	else:
-		modulate = Color(1, 1, 1, 1)
 	return
 	
 func load_card() -> bool:
@@ -73,7 +70,5 @@ func handle_types(types_array: Array) -> bool:
 
 func flip() -> void:
 	face_down = !face_down
-	if face_down: 
-		modulate = Color(0, 0, 0, 1)
-	else:
-		modulate = Color(1, 1, 1, 1)
+	$Title/Cardback.visible = face_down
+	return

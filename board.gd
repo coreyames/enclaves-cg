@@ -39,9 +39,9 @@ func _ready() -> void:
 		return
 
 	deck.contents = decklist.duplicate()
+	for c: Card in deck.contents:
+		c.flip()
 	deck.shuffle()
-	
-	# deck hidden and also discard when empty
 
 	# setup value tracker and tie to ui
 	values.water      = 0
@@ -79,9 +79,6 @@ func _ready() -> void:
 	
 	for i: int in range(max_hand_size-2):
 		drawn_card_to_hand(deck.draw_no_emit())
-
-	disc.modulate = Color(0, 0, 0, 1)
-	deck.card.flip()
 
 	SignalBus.card_hovered.connect(_on_card_hovered)
 	$PlayerRegion.mouse_entered.connect(_on_mouse_entered_player_region)

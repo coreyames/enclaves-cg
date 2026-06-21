@@ -38,12 +38,12 @@
 		"Plan":[
 			{
 				"id": 0,
-				"title": "New Plan 1",
-				"types": ["Search", "Retrieval", "Subversion"],
-				"cost": "1:1:1",
+				"title": "Forage",
+				"types": ["Search", "Retrieval"],
+				"cost": "0:0:1",
 				"img_path": "res://card-imgs/example_card_img.jpg",
-				"success": "success text",
-				"failure": "failure text"				
+				"success": "Receive 1F1W",
+				"failure": "No penalty"				
 			},
 			{
 				"id": 1,

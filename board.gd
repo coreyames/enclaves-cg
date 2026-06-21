@@ -39,10 +39,8 @@ func _ready() -> void:
 		return
 
 	deck.contents = decklist.duplicate()
-	for c: Card in deck.contents:
-		c.flip()
 	deck.shuffle()
-
+	
 	# setup value tracker and tie to ui
 	values.water      = 0
 	values.food       = 0
@@ -150,7 +148,10 @@ func from_cardset_by_id(id: int) -> Card:
 # draw a card and update the hand
 func drawn_card_to_hand(drawn_card: Card) -> bool:
 	if drawn_card:
+		if drawn_card.face_down:
+			drawn_card.flip()
 		hand.append(drawn_card)
+		
 		update_hand_zone()
 	return true
 
@@ -160,8 +161,9 @@ func update_hand_zone() -> void:
 		slot.remove_card()
 	var idx: int = 0
 	for card: Card in hand:
-		if card.face_down: card.flip()
 		hand_slots[idx].add_card(card)
+		if hand_slots[idx].card.face_down:
+			hand_slots[idx].card.flip()
 		idx += 1
 	return
 
@@ -181,7 +183,7 @@ func _on_card2d_grabbed(card2d: Card2D) -> void:
 	grabbed_card2d = card2d
 	return
 	
-func _on_card2d_dropped(_dropped_at: Vector2) -> void:
+func _on_card2d_dropped(_dropped_at: Vector2, _card: Card) -> void:
 	var new_card2d: Card2D = card_2d_scene.instantiate()
 	
 	if !mouse_in_player_region:
@@ -190,9 +192,7 @@ func _on_card2d_dropped(_dropped_at: Vector2) -> void:
 			grabbed_card2d = null
 			grabbed_card2d_start_position = Vector2.INF
 			return
-	if grabbed_card2d.get_parent() != $HandZone:
-		pass
-	elif grabbed_card2d.get_parent() == $HandZone:
+	if has_node(grabbed_card2d.get_path()):
 		new_card2d.card = plan_card_scene.instantiate()
 		new_card2d.input_pickable = true
 		new_card2d.scale = Vector2.ONE
@@ -201,11 +201,19 @@ func _on_card2d_dropped(_dropped_at: Vector2) -> void:
 		new_card2d.card.load_card()
 		add_child(new_card2d)
 		new_card2d.add_card(new_card2d.card)
+		if grabbed_card2d.get_parent() == $HandZone:
+			grabbed_card2d.global_position = hand_slots_dict[grabbed_card2d]
+			grabbed_card2d.remove_card()
+		else:
+			grabbed_card2d.queue_free()
+	else:
+		print('???')
 		
-		grabbed_card2d.global_position = hand_slots_dict[grabbed_card2d]
-		grabbed_card2d.remove_card()
-		
-	var card_ref: Card2D = new_card2d if new_card2d.get_parent() != null else grabbed_card2d
+	var card_ref: Card2D
+	if new_card2d.get_parent() != null:
+		card_ref = new_card2d
+	else: 
+		card_ref = grabbed_card2d
 	
 	if card_ref.global_position.y < $PlayerRegion.global_position.y:
 		card_ref.global_position.y = $PlayerRegion.global_position.y + 10
@@ -216,7 +224,7 @@ func _on_card2d_dropped(_dropped_at: Vector2) -> void:
 		card_ref.global_position.x = $DetailView.global_position.x - 120
 		if card_ref.global_position.y + 160 > $DetailView.global_position.y:
 			card_ref.global_position.y = $DetailView.global_position.y - 160 
-	
+		
 	grabbed_card2d = null
 	grabbed_card2d_start_position = Vector2.INF
 	return

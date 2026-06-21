@@ -4,6 +4,9 @@ var success: String
 var failure: String
 
 func _ready() -> void:
+	face_down = false
+	$Title/Cardback.visible = face_down
+	
 	$Title/Image.texture.resource_path = img_path
 	$Title.text = title
 	

@@ -201,6 +201,7 @@ text = "[i]Subtype[/i]
 horizontal_alignment = 2
 
 [node name="Cardback" type="TextureRect" parent="Title" unique_id=1436763659]
+visible = false
 z_index = 1
 custom_maximum_size = Vector2(106, 147)
 layout_mode = 0

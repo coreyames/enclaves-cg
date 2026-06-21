@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
 			card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 			grabbed = false
 			z_index = 1
-			SignalBus.card2d_dropped.emit(event.global_position)
+			SignalBus.card2d_dropped.emit(event.global_position, card)
 	elif event is InputEventMouseMotion && grabbed:
 		var mouse_delta: Vector2 = event.relative
 		position += mouse_delta

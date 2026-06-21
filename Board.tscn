@@ -83,8 +83,6 @@ horizontal_alignment = 1
 [node name="Deck" parent="." unique_id=1162125077 instance=ExtResource("3_k0g80")]
 position = Vector2(34, 898)
 
-[node name="Card" parent="Deck" unique_id=1958935780 instance=ExtResource("4_grdf5")]
-
 [node name="DiscardLabel" type="Label" parent="." unique_id=196140118]
 layout_mode = 0
 offset_left = 199.0
@@ -99,6 +97,7 @@ horizontal_alignment = 1
 position = Vector2(165, 898)
 
 [node name="Card" parent="Discard" unique_id=712410731 instance=ExtResource("4_grdf5")]
+mouse_filter = 2
 
 [node name="DespairLabel" type="Label" parent="." unique_id=34358770]
 layout_mode = 0

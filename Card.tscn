@@ -181,6 +181,7 @@ offset_left = 2.0
 offset_top = 1.0
 offset_right = 108.0
 offset_bottom = 146.0
+mouse_filter = 2
 texture = ExtResource("3_21rx5")
 
 [node name="Panel" type="Panel" parent="Title/Cardback" unique_id=1017069132]

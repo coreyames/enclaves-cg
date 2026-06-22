@@ -14,6 +14,7 @@ var max_hand_size: int = 5
 var top_face_down: bool = true
 
 func _ready() -> void:
+	SignalBus.card2d_dropped.connect(_on_card_dropped_here)
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
 	click_timer = Timer.new()
 	click_timer.wait_time = Settings.DOUBLE_CLICK_THRESHOLD
@@ -81,6 +82,7 @@ func _on_click_timer_single_click() -> void:
 	
 func _mouse_exit() -> void:
 	can_grab = false
+	SignalBus.slot_exited.emit()
 	return
 
 #prevent immediate grab ability when go voer

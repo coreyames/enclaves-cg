@@ -9,6 +9,7 @@ var hand_slots: Array[Card2D] = []
 var max_hand_size: int        = 5
 var hand_slots_dict: Dictionary[Card2D, Vector2] = {}
 var current_detail: Card
+var slot_hovered: Card2D
 var mouse_in_player_region: bool = false
 var grabbed_card2d: Card2D
 var grabbed_card2d_start_position: Vector2
@@ -80,9 +81,11 @@ func _ready() -> void:
 	for i: int in range(max_hand_size-2):
 		drawn_card_to_hand(deck.draw_no_emit())
 
-	SignalBus.card_hovered.connect(_on_card_hovered)
 	$PlayerRegion.mouse_entered.connect(_on_mouse_entered_player_region)
 	$PlayerRegion.mouse_exited.connect(_on_mouse_exited_player_region)
+	SignalBus.card_hovered.connect(_on_card_hovered)
+	SignalBus.slot_hovered.connect(_on_slot_hovered)
+	SignalBus.slot_exited.connect(_on_slot_exited)
 	SignalBus.card2d_grabbed.connect(_on_card2d_grabbed)
 	SignalBus.card2d_dropped.connect(_on_card2d_dropped)
 	SignalBus.card_draw.connect(_on_card_draw)
@@ -183,9 +186,10 @@ func _on_card_hovered(card: Card) -> void:
 func _on_card2d_grabbed(card2d: Card2D) -> void:
 	grabbed_card2d_start_position = card2d.global_position
 	grabbed_card2d = card2d
+	grabbed_card2d.z_index = 2
 	return
 	
-func _on_card2d_dropped(_dropped_at: Vector2, _card: Card) -> void:
+func _on_card2d_dropped(_dropped_at: Vector2, _card: Card, _undo: bool) -> void:
 	var new_card2d: Card2D = card_2d_scene.instantiate()
 	
 	if !mouse_in_player_region:
@@ -255,4 +259,10 @@ func _on_mouse_entered_player_region() -> void:
 	return
 func _on_mouse_exited_player_region() -> void:
 	mouse_in_player_region = false
+	return
+func _on_slot_hovered(card2d: Card2D) -> void:
+	slot_hovered = card2d
+	return
+func _on_slot_exited() -> void:
+	slot_hovered = null
 	return

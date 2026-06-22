@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://cr8ng4qarjaxu" path="res://card-imgs/boardbg-pexels-davidmcelwee.jpg" id="1_nd4as"]
 [ext_resource type="PackedScene" uid="uid://bb5n52c5sx3eb" path="res://Card2D.tscn" id="3_hq5ls"]
 [ext_resource type="PackedScene" uid="uid://dqcsyrc0sa7t3" path="res://Stack2D.tscn" id="3_k0g80"]
-[ext_resource type="PackedScene" uid="uid://c6ddfs1v37jkx" path="res://Card.tscn" id="4_grdf5"]
 [ext_resource type="PackedScene" uid="uid://58petpm8plg8" path="res://ValuePanel.tscn" id="5_k0g80"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hq5ls"]
@@ -95,9 +94,6 @@ horizontal_alignment = 1
 
 [node name="Discard" parent="." unique_id=691513004 instance=ExtResource("3_k0g80")]
 position = Vector2(165, 898)
-
-[node name="Card" parent="Discard" unique_id=712410731 instance=ExtResource("4_grdf5")]
-mouse_filter = 2
 
 [node name="DespairLabel" type="Label" parent="." unique_id=34358770]
 layout_mode = 0

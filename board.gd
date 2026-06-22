@@ -25,6 +25,7 @@ var values: Dictionary[String, int]
 func _ready() -> void:
 	deck = $Deck
 	disc = $Discard
+	disc.input_pickable = false
 	
 	# load active cardset
 	cardset = load_cards("res://cards.json")
@@ -40,6 +41,7 @@ func _ready() -> void:
 
 	deck.contents = decklist.duplicate()
 	deck.shuffle()
+	deck.refresh_stack_count()
 	
 	# setup value tracker and tie to ui
 	values.water      = 0

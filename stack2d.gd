@@ -1,5 +1,7 @@
 class_name Stack2D extends Card2D
 
+signal contents_changed 
+
 const card_scene: PackedScene = preload("res://Card.tscn")
 var contents: Array[Card] = []
 var was_empty: bool = true
@@ -18,7 +20,9 @@ func _ready() -> void:
 	click_timer.one_shot = true
 	click_timer.timeout.connect(_on_click_timer_single_click)
 	handref = get_parent().hand
+	contents_changed.connect(_on_contents_changed)
 	add_child(click_timer)
+	
 	return
 
 func _input(event: InputEvent) -> void:
@@ -26,6 +30,13 @@ func _input(event: InputEvent) -> void:
 		can_grab = false
 	
 	if event is InputEventMouseButton && event.is_action_pressed("select"):
+		var rect: Rect2 = $CollisionShape2D.shape.get_rect()
+		var pt: Vector2 = get_viewport().get_mouse_position()
+		var cpt: Vector2 = global_position
+		var new_rect: Rect2 = Rect2(cpt, rect.size)
+
+		if !new_rect.has_point(pt):
+			return
 		if check_double_click:
 			check_double_click = false
 			can_grab = true
@@ -48,7 +59,7 @@ func _on_do_double_click(_viewport: Viewport, event: InputEvent, _shape_idx: int
 func _on_click_timer_single_click() -> void:
 	if !check_double_click && can_grab && contents.size() > 0:
 		var new_card2d: Card2D = Card2D.new()
-		var drawn_card: Card = draw_no_emit()
+		var drawn_card: Card = draw_no_emit(true)
 		if drawn_card:
 			new_card2d.card = drawn_card.duplicate() 
 			last_removed_idx = 0
@@ -79,6 +90,8 @@ func _mouse_enter() -> void:
 # int return val is OK or Err
 func insert_card(_card: Card, from_top: int = 0) -> int:
 	var ok_or_err: int = contents.insert(from_top, _card)
+	if ok_or_err == OK:
+		contents_changed.emit()
 	if from_top == 0:
 		remove_display_card()
 		add_card(_card)
@@ -96,22 +109,23 @@ func take_card(from_top: int, emit: bool = true) -> Card:
 		if card.face_down != top_face_down:
 			card.flip()
 	if emit: SignalBus.card_draw.emit(taken_card)
+	contents_changed.emit()
 	return taken_card
 	
-func draw() -> Card:
+func draw(ignore_hand_limit: bool = false) -> Card:
 	if contents.size() < 1:
 		print("deck empty! can't draw")
 		return null
-	if handref.size() >= max_hand_size:
+	if !ignore_hand_limit && handref.size() >= max_hand_size:
 		print("hand full! can't draw")
 		return null
 	return take_card(0)
 	
-func draw_no_emit() -> Card:
+func draw_no_emit(ignore_hand_limit: bool = false) -> Card:
 	if contents.size() < 1:
 		print("deck empty! can't draw")
 		return null
-	if handref.size() >= max_hand_size:
+	if !ignore_hand_limit && handref.size() >= max_hand_size:
 		print("hand full! can't draw")
 		return null
 	return take_card(0, false)
@@ -160,6 +174,14 @@ func _on_new_card2_dropped(_at: Vector2, held_card: Card = null, undo: bool = fa
 	stack_contents_grabbed = false
 	var card2d: Card2D = held_card.get_parent()
 	card2d.grabbed = false 
+	return
+	
+func _on_contents_changed() -> void:
+	$StackMenu.text = "%d" % [contents.size()]
+	return
+	
+func refresh_stack_count() -> void:
+	$StackMenu.text = "%d" % [contents.size()]
 	return
 	
 func remove_display_card() -> void:

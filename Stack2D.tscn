@@ -8,17 +8,22 @@ size = Vector2(110, 150)
 [node name="Node2D" type="Area2D" unique_id=1162125077]
 script = ExtResource("1_b4gj2")
 
-[node name="OptionButton" type="OptionButton" parent="." unique_id=619745398]
-offset_right = 46.0
-offset_bottom = 20.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869969107]
+position = Vector2(55, 75)
+shape = SubResource("RectangleShape2D_l0qdg")
+
+[node name="StackMenu" type="MenuButton" parent="." unique_id=1927127182]
+z_index = 2
+offset_top = -25.0
+offset_right = 25.0
 mouse_force_pass_scroll_events = false
-theme_override_font_sizes/font_size = 4
-item_count = 2
+theme_override_font_sizes/font_size = 12
+text = "0"
+flat = false
+item_count = 3
 popup/item_0/text = "Shuffle"
 popup/item_0/id = 0
 popup/item_1/text = "Search"
 popup/item_1/id = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869969107]
-position = Vector2(55, 75)
-shape = SubResource("RectangleShape2D_l0qdg")
+popup/item_2/text = "Flip"
+popup/item_2/id = 2

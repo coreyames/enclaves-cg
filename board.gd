@@ -26,7 +26,6 @@ var values: Dictionary[String, int]
 func _ready() -> void:
 	deck = $Deck
 	disc = $Discard
-	disc.input_pickable = false
 	
 	# load active cardset
 	cardset = load_cards("res://cards.json")

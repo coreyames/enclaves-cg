@@ -8,7 +8,9 @@ var shape_ref: Shape2D
 
 func _ready() -> void:
 	SignalBus.card2d_dropped.connect(_on_card_dropped_here)
-	shape_ref = $CollisionShape2D.shape
+	for c: Node in get_children():
+		if c is CollisionShape2D:
+			shape_ref = c.shape
 	return
 
 func add_card(_card: Card) -> void:
@@ -46,6 +48,8 @@ func _on_card_dropped_here(_dropped_at: Vector2, _card: Card, _undo: bool) -> vo
 			var _card_parent: Card2D = _card.get_parent()
 			if _card_parent:
 				_card_parent.remove_card()
+				if _card_parent not in get_tree().current_scene.hand_slots:
+					_card_parent.queue_free()
 			add_card(_card)	
 	return
 

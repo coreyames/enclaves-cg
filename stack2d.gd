@@ -14,7 +14,7 @@ var max_hand_size: int = 5
 var top_face_down: bool = true
 
 func _ready() -> void:
-	SignalBus.card2d_dropped.connect(_on_card_dropped_here)
+	SignalBus.card2d_dropped.connect(_on_card2d_dropped_here)
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
 	click_timer = Timer.new()
 	click_timer.wait_time = Settings.DOUBLE_CLICK_THRESHOLD
@@ -23,7 +23,9 @@ func _ready() -> void:
 	handref = get_parent().hand
 	contents_changed.connect(_on_contents_changed)
 	add_child(click_timer)
-	
+	for c: Node in get_children():
+		if c is CollisionShape2D:
+			shape_ref = c.shape
 	return
 
 func _input(event: InputEvent) -> void:
@@ -172,10 +174,30 @@ func shuffle() -> void:
 func _on_new_card2_dropped(_at: Vector2, held_card: Card = null, undo: bool = false) -> void:
 	if undo && held_card:
 		insert_card(held_card, last_removed_idx)
+	elif !held_card:
+		return
 	can_grab = true
 	stack_contents_grabbed = false
 	var card2d: Card2D = held_card.get_parent()
 	card2d.grabbed = false 
+	return
+	
+func _on_card2d_dropped_here(_dropped_at: Vector2, _card: Card = null, _undo: bool = false) -> void:
+
+	if !shape_ref:
+		return
+	var rect: Rect2 = shape_ref.get_rect()
+	var cpt: Vector2 = global_position
+	var new_rect: Rect2 = Rect2(cpt, rect.size)
+	if new_rect.has_point(_dropped_at):
+		if _card:
+			var _card_parent: Card2D = _card.get_parent()
+			if _card_parent:
+				_card_parent.remove_card()
+				if _card_parent not in get_tree().current_scene.hand_slots:
+					_card_parent.queue_free()
+			insert_card(_card)
+			set_top_card(_card)
 	return
 	
 func _on_contents_changed() -> void:
@@ -183,7 +205,7 @@ func _on_contents_changed() -> void:
 	return
 	
 func refresh_stack_count() -> void:
-	$StackMenu.text = "%d" % [contents.size()]
+	_on_contents_changed()
 	return
 	
 func remove_display_card() -> void:

@@ -183,12 +183,12 @@ func _on_new_card2_dropped(_at: Vector2, held_card: Card = null, undo: bool = fa
 	return
 	
 func _on_card2d_dropped_here(_dropped_at: Vector2, _card: Card = null, _undo: bool = false) -> void:
-
 	if !shape_ref:
 		return
 	var rect: Rect2 = shape_ref.get_rect()
 	var cpt: Vector2 = global_position
 	var new_rect: Rect2 = Rect2(cpt, rect.size)
+	var handslots_ref: Array[Card2D] = get_tree().current_scene.hand_slots
 	if new_rect.has_point(_dropped_at):
 		if _card:
 			var _card_parent: Card2D = _card.get_parent()
@@ -196,6 +196,8 @@ func _on_card2d_dropped_here(_dropped_at: Vector2, _card: Card = null, _undo: bo
 				_card_parent.remove_card()
 				if _card_parent not in get_tree().current_scene.hand_slots:
 					_card_parent.queue_free()
+				else:
+					handref.pop_at(handslots_ref.find(_card_parent))					
 			insert_card(_card)
 			set_top_card(_card)
 	return

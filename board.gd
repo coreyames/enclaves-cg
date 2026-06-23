@@ -26,6 +26,7 @@ var values: Dictionary[String, int]
 func _ready() -> void:
 	deck = $Deck
 	disc = $Discard
+	disc.top_face_down = false
 	
 	# load active cardset
 	cardset = load_cards("res://cards.json")
@@ -208,6 +209,7 @@ func _on_card2d_dropped(_dropped_at: Vector2, _card: Card, _undo: bool) -> void:
 		new_card2d.add_card(new_card2d.card)
 		if grabbed_card2d.get_parent() == $HandZone:
 			grabbed_card2d.global_position = hand_slots_dict[grabbed_card2d]
+			hand.pop_at(hand.find(grabbed_card2d))
 			grabbed_card2d.remove_card()
 		else:
 			grabbed_card2d.queue_free()

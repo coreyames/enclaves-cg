@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cs4q77r1l6rxl"]
+
+[ext_resource type="Script" uid="uid://daeupsthuqnlx" path="res://stack_browse.gd" id="1_hkl8n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r05sy"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="StackBrowse" type="PanelContainer" unique_id=1751948946]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1320.0
+offset_bottom = -830.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r05sy")
+script = ExtResource("1_hkl8n")
+
+[node name="Button" type="Button" parent="." unique_id=689338275]
+custom_maximum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 10
+text = "X"

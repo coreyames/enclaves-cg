@@ -2,7 +2,12 @@ class_name Stack2D extends Card2D
 
 signal contents_changed 
 
-const card_scene: PackedScene = preload("res://Card.tscn")
+const POPUP_CARD_START_POS: Vector2 = Vector2(20,20)
+const CARD_SCENE: PackedScene = preload("res://Card.tscn")
+const PLAN_CARD_SCENE: PackedScene = preload("res://PlanCard.tscn")
+const STACK_BROWSE_SCENE: PackedScene = preload("res://StackBrowse.tscn")
+@onready var menu_node: MenuButton = $StackMenu
+
 var contents: Array[Card] = []
 var was_empty: bool = true
 var stack_contents_grabbed: bool = false
@@ -12,10 +17,12 @@ var check_double_click: bool = true
 var handref: Array[Card]
 var max_hand_size: int = 5
 var top_face_down: bool = true
+var browse: StackBrowse
 
 func _ready() -> void:
 	SignalBus.card2d_dropped.connect(_on_card2d_dropped_here)
 	SignalBus.card2d_dropped.connect(_on_new_card2_dropped)
+	menu_node.get_popup().id_pressed.connect(_on_stack_menu_item_pressed)
 	click_timer = Timer.new()
 	click_timer.wait_time = Settings.DOUBLE_CLICK_THRESHOLD
 	click_timer.one_shot = true
@@ -169,6 +176,7 @@ func set_bottom_card_idx(idx: int) -> void:
 func shuffle() -> void:
 	contents.shuffle()
 	set_top_card_from_idx()
+	set_card_face_down(true)
 	return
 	
 func _on_new_card2_dropped(_at: Vector2, held_card: Card = null, undo: bool = false) -> void:
@@ -199,8 +207,28 @@ func _on_card2d_dropped_here(_dropped_at: Vector2, _card: Card = null, _undo: bo
 					handref.erase(_card)					
 			insert_card(_card)
 			set_top_card(_card)
+			set_card_face_down(top_face_down)
 	return
 	
+func _on_stack_menu_item_pressed(id: int) -> void:
+	match id:
+		0: shuffle()
+		1: search_deck_modal()
+		2: if card: card.flip()
+	return	
+	
+func search_deck_modal() -> void:
+	browse = STACK_BROWSE_SCENE.instantiate()
+	browse.load_stack(contents)
+	get_tree().current_scene.add_child(browse)
+	browse.position = Vector2(100, 550)
+	browse.buttonref.button_up.connect(_on_close_deck_modal)
+	return
+
+func _on_close_deck_modal() -> void:
+	browse.get_parent().remove_child(browse)
+	return
+
 func _on_contents_changed() -> void:
 	$StackMenu.text = "%d" % [contents.size()]
 	return

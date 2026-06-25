@@ -43,6 +43,12 @@ func _ready() -> void:
 	deck.contents = decklist.duplicate()
 	deck.shuffle()
 	deck.refresh_stack_count()
+	#deck.menu_node.get_popup().set_item_disabled(1, true)
+	#deck.menu_node.get_popup().set_item_disabled(2, true)
+	
+	disc.menu_node.get_popup().set_item_disabled(0, true)
+	disc.menu_node.get_popup().set_item_disabled(1, true)
+	#disc.menu_node.get_popup().set_item_disabled(2, true)
 	
 	# setup value tracker and tie to ui
 	values.water      = 0
@@ -52,6 +58,7 @@ func _ready() -> void:
 	values.despair    = 0
 	values.stability  = 100
 	$StabilityValue.set_value(values.stability)
+	
 	$FoodValue.value_changed.connect(_on_update_food_value)
 	$WaterValue.value_changed.connect(_on_update_water_value)
 	$SpecialistValue.value_changed.connect(_on_update_specialist_value)
@@ -89,7 +96,6 @@ func _ready() -> void:
 	SignalBus.card2d_grabbed.connect(_on_card2d_grabbed)
 	SignalBus.card2d_dropped.connect(_on_card2d_dropped)
 	SignalBus.card_draw.connect(_on_card_draw)
-	
 	return
 	
 func _on_card_draw(_card: Card) -> void:
@@ -213,8 +219,6 @@ func _on_card2d_dropped(_dropped_at: Vector2, _card: Card, _undo: bool) -> void:
 			grabbed_card2d.remove_card()
 		else:
 			grabbed_card2d.queue_free()
-	else:
-		print('???')
 		
 	var card_ref: Card2D
 	if new_card2d.get_parent() != null:
